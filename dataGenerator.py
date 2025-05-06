@@ -1,65 +1,82 @@
 import numpy as np
 
 def generate_data():
-    # Energy data: 3 stations × 24 hours = 72 readings total (in MWh)
-    energy_data = np.array([
-        [22488, 22515, 22430, 22567, 22390, 22495,
-         22521, 22610, 22385, 22477, 22544, 22469,
-         22532, 22378, 22441, 22573, 22399, 22466,
-         22508, 22602, 22409, 22589, 22453, 22535],
-        [22504, 22421, 22556, 22418, 22580, 22376,
-         22488, 22605, 22391, 22454, 22547, 22462,
-         22399, 22512, 22408, 22599, 22473, 22530,
-         22450, 22607, 22401, 22565, 22395, 22486],
-        [22526, 22413, 22560, 22392, 22483, 22542,
-         22440, 22611, 22434, 22509, 22387, 22496,
-         22500, 22415, 22575, 22489, 22398, 22550,
-         22471, 22533, 22396, 22499, 22585, 22422]
+
+    # 0D Array: Bias for the tech
+    bias = np.array(1)
+
+    # 1D Array: tech's characteristics (scalability, automation, real-time processing, interpretability, efficiency)
+    tech = np.array([9, 10, 8, 7, 9]) # Tech with scalability, automation, real-time processing, interpretability, efficiency
+    weights = np.array([2, 4, 6, 8, 10]) # Importance for each characteristic
+
+
+    # 2D Array: tech's characteristics (3 techs, 5 characteristics)
+    techs = np.array([
+        [5, 1, 3, 2, 4], # Tech 1
+        [4, 2, 4, 3, 5], # Tech 2
+        [7, 3, 2, 4, 6]  # Tech 3
     ])
 
-    # Charging status: 3 stations × 24 hours (1 = charging, 0 = not charging)
-    charging_status = np.array([
-        [1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0],
-        [0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1],
-        [1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0]
-    ])
-
-    # Temperature data: 3 stations × 24 hours × 3 sensors (in Celsius)
-    # Sensors:
-    # [0] External maximum temperature (Sun-facing side)
-    # [1] External minimum temperature (Shadow side)
-    # [2] Internal average temperature
-    temperature_data = np.array([
-        [   # station 0
-            [125, -165, 24], [124, -166, 25], [123, -167, 26], [122, -168, 24],
-            [121, -169, 23], [120, -170, 22], [121, -171, 23], [122, -172, 24],
-            [123, -173, 25], [124, -174, 26], [125, -175, 27], [126, -174, 28],
-            [127, -173, 27], [128, -172, 26], [129, -171, 25], [130, -170, 24],
-            [131, -169, 23], [132, -168, 22], [133, -167, 23], [134, -166, 24],
-            [135, -165, 25], [134, -164, 26], [133, -163, 27], [132, -162, 28]
+    # 3D Array: tech's characteristics (3 groups, 3 tech, 5 characteristics)
+    tech_groups = np.array([
+        [ # Group 1
+            [5, 1, 3, 2, 3], # Tech 1
+            [4, 2, 5, 3, 4], # Tech 2
+            [7, 3, 2, 4, 5]  # Tech 3
         ],
-        [  # station 1
-            [130, -170, 26], [129, -171, 25], [128, -172, 24], [127, -173, 23],
-            [126, -174, 22], [125, -175, 22], [124, -174, 23], [123, -173, 24],
-            [122, -172, 25], [121, -171, 26], [120, -170, 27], [121, -169, 28],
-            [122, -168, 27], [123, -167, 26], [124, -166, 25], [125, -165, 24],
-            [126, -164, 23], [127, -163, 22], [128, -162, 23], [129, -161, 24],
-            [130, -160, 25], [129, -159, 26], [128, -158, 27], [127, -157, 28]
+        [ # Group 2
+            [6, 1, 4, 3, 5], # Tech 1
+            [5, 3, 5, 4, 6], # Tech 2
+            [8, 4, 3, 5, 7]  # Tech 3
         ],
-        [  # station 2
-            [132, -175, 25], [131, -174, 24], [130, -173, 23], [129, -172, 22],
-            [128, -171, 22], [127, -170, 23], [126, -169, 24], [125, -168, 25],
-            [124, -167, 26], [123, -166, 27], [122, -165, 28], [123, -164, 27],
-            [124, -163, 26], [125, -162, 25], [126, -161, 24], [127, -160, 23],
-            [128, -159, 22], [129, -158, 23], [130, -157, 24], [131, -156, 25],
-            [132, -155, 26], [131, -154, 27], [130, -153, 28], [129, -152, 27]
+        [ # Group 3
+            [7, 2, 5, 4, 6], # Tech 1
+            [6, 4, 6, 5, 7], # Tech 2
+            [9, 5, 4, 6, 8]  # Tech 3
         ]
     ])
 
-    print(energy_data, charging_status, temperature_data)
-    print(type(energy_data), type(charging_status), type(temperature_data))
-    print(energy_data.ndim, charging_status.ndim, temperature_data.ndim)
-    print(energy_data.shape, charging_status.shape, temperature_data.shape)
+    # 4D Array: tech's characteristics (2 locations, 3 groups, 3 techs, 5 characteristics)
+    tech_locations = np.array([
+        [ # Location 1
+            [ # Group 1
+                [5, 1, 3, 2, 3], # Tech 1
+                [4, 2, 5, 3, 4], # Tech 2
+                [7, 3, 2, 4, 5]  # Tech 3
+            ],
+            [ # Group 2
+                [6, 1, 4, 3, 5], # Tech 1
+                [5, 3, 5, 4, 6], # Tech 2
+                [8, 4, 3, 5, 7]  # Tech 3
+            ],
+            [ # Group 3
+                [7, 2, 5, 4, 6], # Tech 1
+                [6, 4, 6, 5, 7], # Tech 2
+                [9, 5, 4, 6, 8]  # Tech 3
+            ]
+        ],
+        [ # Location 2
+            [ # Group A
+                [8, 1, 2, 3, 4], # Tech A
+                [7, 2, 3, 4, 5], # Tech B
+                [6, 3, 4, 5, 6]  # Tech C
+            ],
+            [ # Group B
+                [9, 1, 2, 3, 4], # Tech A
+                [8, 2, 3, 4, 5], # Tech B
+                [7, 3, 4, 5, 6]  # Tech C
+            ],
+            [ # Group C
+                [10, 1, 2, 3, 4], # Tech A
+                [9, 2, 3, 4, 5],  # Tech B
+                [8, 3, 4, 5, 6]   # Tech C
+            ]
+        ]
+    ])
+
+    print(bias, tech, weights, techs, tech_groups, tech_locations)
+    print(type(bias), type(tech), type(weights), type(techs), type(tech_groups), type(tech_locations))
+    print(bias.ndim, tech.ndim, weights.ndim, techs.ndim, tech_groups.ndim, tech_locations.ndim)
 
 
 generate_data()
