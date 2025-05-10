@@ -5,19 +5,20 @@ def generate_data():
     # 0D Array: Bias for the tech
     bias = np.array(1)
 
-    # 1D Array: tech's characteristics (scalability, automation, real-time processing, interpretability, efficiency)
-    tech = np.array([9, 10, 8, 7, 9]) # Tech with scalability, automation, real-time processing, interpretability, efficiency
-    weights = np.array([2, 4, 6, 8, 10]) # Importance for each characteristic
+    # 1D Array: a single tech's features
+    tech = np.array([9, 10, 8, 7, 9]) # [scalability, automation, real-time processing, interpretability, efficiency]
+    weights = np.array([2, 4, 6, 8, 10]) # Importance of each feature
 
-
-    # 2D Array: tech's characteristics (3 techs, 5 characteristics)
+    # 2D Array: features of 3 techs
     techs = np.array([
         [5, 1, 3, 2, 4], # Tech 1
         [4, 2, 4, 3, 5], # Tech 2
         [7, 3, 2, 4, 6]  # Tech 3
     ])
 
-    # 3D Array: tech's characteristics (3 groups, 3 tech, 5 characteristics)
+    techs_Labels = np.array([0, 1, 2]) # 0: Basic, 1: Intermediate, 2: Advanced
+
+    # 3D Array: 3 groups, each with 3 tech and 5 features
     tech_groups = np.array([
         [ # Group 1
             [5, 1, 3, 2, 3], # Tech 1
@@ -36,7 +37,13 @@ def generate_data():
         ]
     ])
 
-    # 4D Array: tech's characteristics (2 locations, 3 groups, 3 techs, 5 characteristics)
+    tech_Group_labels = np.array([
+        [0, 1, 2], # Group 1 labels
+        [0, 1, 2], # Group 2 labels
+        [0, 1, 2] # Group 3 labels
+    ]) # 0: Legacy, 1: Modern, 2: NextGen
+
+    # 4D Array: 2 locations, 3 groups, 3 techs, 5 characteristics
     tech_locations = np.array([
         [ # Location 1
             [ # Group 1
@@ -74,9 +81,24 @@ def generate_data():
         ]
     ])
 
-    print(bias, tech, weights, techs, tech_groups, tech_locations)
-    print(type(bias), type(tech), type(weights), type(techs), type(tech_groups), type(tech_locations))
-    print(bias.ndim, tech.ndim, weights.ndim, techs.ndim, tech_groups.ndim, tech_locations.ndim)
+    tech_Locations_labels = np.array([
+        [ # Location 1
+            [0, 1, 2],
+            [0, 1, 2],
+            [0, 1, 2]
+        ],
+        [ # Location 2
+            [0, 1, 2],
+            [0, 1, 2],
+            [0, 1, 2]
+        ]
+    ]) # 0: Cloud, 1: Edge, 2: On-Premises
+
+    # print(bias, tech, weights, techs, techs_Labels, tech_groups, tech_Group_labels, tech_locations, tech_Locations_labels)
+    # print(type(bias), type(tech), type(weights), type(techs), type(techs_Labels), type(tech_groups), type(tech_Group_labels), type(tech_locations), type(tech_Locations_labels))
+    # print(bias.ndim, tech.ndim, weights.ndim, techs.ndim, techs_Labels.ndim, tech_groups.ndim, tech_Group_labels.ndim, tech_locations.ndim, tech_Locations_labels.ndim)
+
+    return (bias, tech, weights, techs, techs_Labels, tech_groups, tech_Group_labels, tech_locations, tech_Locations_labels)
 
 
 generate_data()
