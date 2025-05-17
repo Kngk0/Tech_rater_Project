@@ -2,24 +2,24 @@ import numpy as np
 
 def slice_1D(tech_labels, tech, weights):
     # Labels for the tech
-    basic = tech_labels[0]
-    intermediate = tech_labels[1]
-    advanced = tech_labels[2]
+    basic = tech_labels[-3]
+    intermediate = tech_labels[-2]
+    advanced = tech_labels[-1]
 
     # Feature values
-    scalability = tech[0]
-    automation = tech[1]
-    real_time_processing = tech[2]
-    interpretability = tech[3]
-    efficiency = tech[4]
+    scalability = tech[-5]
+    automation = tech[-4]
+    real_time_processing = tech[-3]
+    interpretability = tech[-2]
+    efficiency = tech[-1]
     combined_score = scalability + automation + real_time_processing + interpretability + efficiency
 
     # Corresponding weights
-    w_scalability = weights[0]
-    w_automation = weights[1]
-    w_real_time_processing = weights[2]
-    w_interpretability = weights[3]
-    w_efficiency = weights[4]
+    w_scalability = weights[-5]
+    w_automation = weights[-4]
+    w_real_time_processing = weights[-3]
+    w_interpretability = weights[-2]
+    w_efficiency = weights[-1]
     w_combined_score = w_scalability + w_automation + w_real_time_processing + w_interpretability + w_efficiency
 
     return basic, intermediate, advanced, scalability, automation, real_time_processing, interpretability, efficiency, combined_score, w_scalability, w_automation, w_real_time_processing, w_interpretability, w_efficiency, w_combined_score
@@ -173,21 +173,6 @@ def slice_4D(tech_locations):
 
     return tech_location2, tech_location2_g1, tech_location2_g1_1, scalability2_g1_1, automation2_g1_1, real_time_processing2_g1_1, interpretability2_g1_1, efficiency2_g1_1, combined_score2_g1_1, tech_location2_g1_2, scalability2_g1_2, automation2_g1_2, real_time_processing2_g1_2, interpretability2_g1_2, efficiency2_g1_2, combined_score2_g1_2, tech_location2_g1_3, scalability2_g1_3, automation2_g1_3, real_time_processing2_g1_3, interpretability2_g1_3, efficiency2_g1_3, combined_score2_g1_3, tech_location2_g2, tech_location2_g2_1, scalability2_g2_1, automation2_g2_1, real_time_processing2_g2_1, interpretability2_g2_1, efficiency2_g2_1, combined_score2_g2_1, tech_location2_g2_2, scalability2_g2_2, automation2_g2_2, real_time_processing2_g2_2, interpretability2_g2_2, efficiency2_g2_2, combined_score2_g2_2, tech_location2_g2_3, scalability2_g2_3, automation2_g2_3, real_time_processing2_g2_3, interpretability2_g2_3, efficiency2_g2_3, combined_score2_g2_3, tech_location2_g3, tech_location2_g3_1, scalability2_g3_1, automation2_g3_1, real_time_processing2_g3_1, interpretability2_g3_1, efficiency2_g3_1, combined_score2_g3_1, tech_location2_g3_2, scalability2_g3_2, automation2_g3_2, real_time_processing2_g3_2, interpretability2_g3_2, efficiency2_g3_2, combined_score2_g3_2, tech_location2_g3_3, scalability2_g3_3, automation2_g3_3, real_time_processing2_g3_3, interpretability2_g3_3, efficiency2_g3_3, combined_score2_g3_3
 '''
-    # Weights for each feature
-    scalability_weights = weights[0]
-    automation_weights = weights[1]
-    real_time_processing_weights = weights[2]
-    interpretability_weights = weights[-2]
-    efficiency_weights = weights[-1]
-
-    # Difficulty level: Basic, Intermediate, Advanced
-    basic = techs_labels[:-2]
-    intermediate = techs_labels[-2:-1]
-    advanced = techs_labels[-1:]
-
-
-
-
 def slice_2D(techs):
     #last_techs = techs[1:] # Last techs in the group
     #performance_data = techs[:, :3] # Performance-focused features: scalability, automation, real-time processing
