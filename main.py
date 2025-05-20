@@ -6,7 +6,7 @@ def main():
     bias, techs_labels, tech, weights, techs, tech_group_labels, tech_groups, tech_locations, tech_locations_labels= generate_data()
 
     # Slice 1D data
-    basic, intermediate, advanced, scalability, automation, real_time_processing, interpretability, efficiency, combined_score, w_scalability, w_automation, w_real_time_processing, w_interpretability, w_efficiency, w_combined_score = slice_1D(techs_labels, tech, weights)
+    basic, intermediate, advanced, scalability, automation, real_time_processing, interpretability, efficiency, combined_score, last_3_features, reverse_order, w_scalability, w_automation, w_real_time_processing, w_interpretability, w_efficiency, w_combined_score, top_3_features, reversed_alternate_weights = slice_1D(techs_labels, tech, weights)
 
     # Print 1D data
     print(f"Tech Labels\nBasic: {basic}, Intermediate: {intermediate}, Advanced: {advanced}")
@@ -24,6 +24,9 @@ def main():
     print("Efficiency:", efficiency)
     print("Combined Score:", combined_score)
     print("\n")
+    print(f"Last 3 Features: {last_3_features}")
+    print("Reversed Order:", reverse_order)
+    print("\n")
 
     print(f"Tech Weights: {weights}")
     print("Scalability Weight:", w_scalability)
@@ -33,9 +36,12 @@ def main():
     print("Efficiency Weight:", w_efficiency)
     print("Combined Score Weight:", w_combined_score)
     print("\n")
+    print(f"Top 3 Features: {top_3_features}")
+    print("Reversed Alternate Weights:", reversed_alternate_weights)
+    print("\n")
 
     # Slice 2D data
-    tech2, scalability2, automation2, real_time_processing2, interpretability2, efficiency2, combined_score2, tech3, scalability3, automation3, real_time_processing3, interpretability3, efficiency3, combined_score3, legacy, modern, nextgen = slice_2D(techs, tech_group_labels)
+    tech2, scalability2, automation2, real_time_processing2, interpretability2, efficiency2, combined_score2, tech3, scalability3, automation3, real_time_processing3, interpretability3, efficiency3, combined_score3, last_2_techs, last_feature, reverse_order_techs, legacy, modern, nextgen = slice_2D(techs, tech_group_labels)
 
     # Print 2D data
     print(f"Tech 2 Features: {tech2}")
@@ -54,6 +60,10 @@ def main():
     print("Efficiency:", efficiency3)
     print("Combined Score:", combined_score3)
     print("\n")
+    print(f"Last 2 Techs:\n {last_2_techs}")
+    print("Last feature from each tech:", last_feature)
+    print(f"Reverse feature order per tech:\n {reverse_order_techs}")
+    print("\n")
 
     print(f"Tech Group Labels\nLegacy: {legacy}, Modern: {modern}, NextGen: {nextgen}")
     print("\n")
@@ -63,7 +73,7 @@ def main():
     print("\n")
 
     # Slice 3D data
-    tech_group2, tech2_1, scalability2_1, automation2_1, real_time_processing2_1, interpretability2_1, efficiency2_1, combined_score2_1, tech2_2, scalability2_2, automation2_2, real_time_processing2_2, interpretability2_2, efficiency2_2, combined_score2_2, tech2_3, scalability2_3, automation2_3, real_time_processing2_3, interpretability2_3, efficiency2_3, combined_score2_3, tech_group3, tech3_1, scalability3_1, automation3_1, real_time_processing3_1, interpretability3_1, efficiency3_1, combined_score3_1, tech3_2, scalability3_2, automation3_2, real_time_processing3_2, interpretability3_2, efficiency3_2, combined_score3_2, tech3_3, scalability3_3, automation3_3, real_time_processing3_3, interpretability3_3, efficiency3_3, combined_score3_3, cloud, edge, on_premises = slice_3D(tech_groups, tech_locations_labels)
+    tech_group2, tech2_1, scalability2_1, automation2_1, real_time_processing2_1, interpretability2_1, efficiency2_1, combined_score2_1, tech2_2, scalability2_2, automation2_2, real_time_processing2_2, interpretability2_2, efficiency2_2, combined_score2_2, tech2_3, scalability2_3, automation2_3, real_time_processing2_3, interpretability2_3, efficiency2_3, combined_score2_3, tech_group3, tech3_1, scalability3_1, automation3_1, real_time_processing3_1, interpretability3_1, efficiency3_1, combined_score3_1, tech3_2, scalability3_2, automation3_2, real_time_processing3_2, interpretability3_2, efficiency3_2, combined_score3_2, tech3_3, scalability3_3, automation3_3, real_time_processing3_3, interpretability3_3, efficiency3_3, combined_score3_3, last_group, last_2_features, cloud, edge, on_premises = slice_3D(tech_groups, tech_locations_labels)
 
     # Print 3D data
     print(f"Tech Group 2 Features:\n {tech_group2}")
@@ -116,7 +126,9 @@ def main():
     print("Efficiency:", efficiency3_3)
     print("Combined Score:", combined_score3_3)
     print("\n")
-    
+    print(f"Last Group Features:\n {last_group}")
+    print(f"Last 2 Features of each tech:\n {last_2_features}")
+    print("\n")
     
     print(f"Tech Location Labels\nCloud: {cloud}, Edge: {edge}, On-Premises: {on_premises}")
     print("\n")
@@ -152,11 +164,11 @@ def main():
     print("\n")
     
     # Slice 4D data
-    tech_location2, tech_location2_g1, tech_location2_g1_1, scalability2_g1_1, automation2_g1_1, real_time_processing2_g1_1, interpretability2_g1_1, efficiency2_g1_1, combined_score2_g1_1, tech_location2_g1_2, scalability2_g1_2, automation2_g1_2, real_time_processing2_g1_2, interpretability2_g1_2, efficiency2_g1_2, combined_score2_g1_2, tech_location2_g1_3, scalability2_g1_3, automation2_g1_3, real_time_processing2_g1_3, interpretability2_g1_3, efficiency2_g1_3, combined_score2_g1_3, tech_location2_g2, tech_location2_g2_1, scalability2_g2_1, automation2_g2_1, real_time_processing2_g2_1, interpretability2_g2_1, efficiency2_g2_1, combined_score2_g2_1, tech_location2_g2_2, scalability2_g2_2, automation2_g2_2, real_time_processing2_g2_2, interpretability2_g2_2, efficiency2_g2_2, combined_score2_g2_2, tech_location2_g2_3, scalability2_g2_3, automation2_g2_3, real_time_processing2_g2_3, interpretability2_g2_3, efficiency2_g2_3, combined_score2_g2_3, tech_location2_g3, tech_location2_g3_1, scalability2_g3_1, automation2_g3_1, real_time_processing2_g3_1, interpretability2_g3_1, efficiency2_g3_1, combined_score2_g3_1, tech_location2_g3_2, scalability2_g3_2, automation2_g3_2, real_time_processing2_g3_2, interpretability2_g3_2, efficiency2_g3_2, combined_score2_g3_2, tech_location2_g3_3, scalability2_g3_3, automation2_g3_3, real_time_processing2_g3_3, interpretability2_g3_3, efficiency2_g3_3, combined_score2_g3_3 = slice_4D(tech_locations)
+    tech_location2, tech_location2_g1, tech_location2_g1_1, scalability2_g1_1, automation2_g1_1, real_time_processing2_g1_1, interpretability2_g1_1, efficiency2_g1_1, combined_score2_g1_1, tech_location2_g1_2, scalability2_g1_2, automation2_g1_2, real_time_processing2_g1_2, interpretability2_g1_2, efficiency2_g1_2, combined_score2_g1_2, tech_location2_g1_3, scalability2_g1_3, automation2_g1_3, real_time_processing2_g1_3, interpretability2_g1_3, efficiency2_g1_3, combined_score2_g1_3, tech_location2_g2, tech_location2_g2_1, scalability2_g2_1, automation2_g2_1, real_time_processing2_g2_1, interpretability2_g2_1, efficiency2_g2_1, combined_score2_g2_1, tech_location2_g2_2, scalability2_g2_2, automation2_g2_2, real_time_processing2_g2_2, interpretability2_g2_2, efficiency2_g2_2, combined_score2_g2_2, tech_location2_g2_3, scalability2_g2_3, automation2_g2_3, real_time_processing2_g2_3, interpretability2_g2_3, efficiency2_g2_3, combined_score2_g2_3, tech_location2_g3, tech_location2_g3_1, scalability2_g3_1, automation2_g3_1, real_time_processing2_g3_1, interpretability2_g3_1, efficiency2_g3_1, combined_score2_g3_1, tech_location2_g3_2, scalability2_g3_2, automation2_g3_2, real_time_processing2_g3_2, interpretability2_g3_2, efficiency2_g3_2, combined_score2_g3_2, tech_location2_g3_3, scalability2_g3_3, automation2_g3_3, real_time_processing2_g3_3, interpretability2_g3_3, efficiency2_g3_3, combined_score2_g3_3, last_feature_all_techs, reversed_techs = slice_4D(tech_locations)
 
     # Print 4D data
     print(f"Tech Location 2 Features:\n {tech_location2}")
-    print(f"Tech Group 1 Features: {tech_location2_g1}")
+    print(f"Tech Group 1 Features:\n {tech_location2_g1}")
     print(f"Tech 1 Features: {tech_location2_g1_1}")
     print("Scalability:", scalability2_g1_1)
     print("Automation:", automation2_g1_1)
@@ -231,6 +243,7 @@ def main():
     print("Efficiency:", efficiency2_g3_3)
     print("Combined Score:", combined_score2_g3_3)
     print("\n")
-
+    print(f"Last feature from all techs, groups, locations:\n {last_feature_all_techs}")
+    print(f"Reverse tech order in every group and location:\n {reversed_techs}")
 
 main()

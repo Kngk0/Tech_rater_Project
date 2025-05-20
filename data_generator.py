@@ -14,7 +14,7 @@ def generate_data():
 
     # 2D Array: features of 3 techs
     techs = np.array([
-        [5, 1, 3, 2, 4], # Tech 1
+        [5, 1, 3, 2, 3], # Tech 1
         [4, 2, 4, 3, 5], # Tech 2
         [7, 3, 2, 4, 6]  # Tech 3
     ])
@@ -30,8 +30,8 @@ def generate_data():
     tech_groups = np.array([
         [ # Group 1
             [5, 1, 3, 2, 3], # Tech 1
-            [4, 2, 5, 3, 4], # Tech 2
-            [7, 3, 2, 4, 5]  # Tech 3
+            [4, 2, 4, 3, 5], # Tech 2
+            [7, 3, 2, 4, 6]  # Tech 3
         ],
         [ # Group 2
             [6, 1, 4, 3, 5], # Tech 1
@@ -64,8 +64,8 @@ def generate_data():
         [ # Location 1
             [ # Group 1
                 [5, 1, 3, 2, 3], # Tech 1
-                [4, 2, 5, 3, 4], # Tech 2
-                [7, 3, 2, 4, 5]  # Tech 3
+                [4, 2, 4, 3, 5], # Tech 2
+                [7, 3, 2, 4, 6]  # Tech 3
             ],
             [ # Group 2
                 [6, 1, 4, 3, 5], # Tech 1
