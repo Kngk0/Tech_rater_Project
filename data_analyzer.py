@@ -183,3 +183,25 @@ def slice_4D(tech_locations):
     reversed_techs = tech_locations[:, :, ::-1, :]
 
     return tech_location2, tech_location2_g1, tech_location2_g1_1, scalability2_g1_1, automation2_g1_1, real_time_processing2_g1_1, interpretability2_g1_1, efficiency2_g1_1, combined_score2_g1_1, tech_location2_g1_2, scalability2_g1_2, automation2_g1_2, real_time_processing2_g1_2, interpretability2_g1_2, efficiency2_g1_2, combined_score2_g1_2, tech_location2_g1_3, scalability2_g1_3, automation2_g1_3, real_time_processing2_g1_3, interpretability2_g1_3, efficiency2_g1_3, combined_score2_g1_3, tech_location2_g2, tech_location2_g2_1, scalability2_g2_1, automation2_g2_1, real_time_processing2_g2_1, interpretability2_g2_1, efficiency2_g2_1, combined_score2_g2_1, tech_location2_g2_2, scalability2_g2_2, automation2_g2_2, real_time_processing2_g2_2, interpretability2_g2_2, efficiency2_g2_2, combined_score2_g2_2, tech_location2_g2_3, scalability2_g2_3, automation2_g2_3, real_time_processing2_g2_3, interpretability2_g2_3, efficiency2_g2_3, combined_score2_g2_3, tech_location2_g3, tech_location2_g3_1, scalability2_g3_1, automation2_g3_1, real_time_processing2_g3_1, interpretability2_g3_1, efficiency2_g3_1, combined_score2_g3_1, tech_location2_g3_2, scalability2_g3_2, automation2_g3_2, real_time_processing2_g3_2, interpretability2_g3_2, efficiency2_g3_2, combined_score2_g3_2, tech_location2_g3_3, scalability2_g3_3, automation2_g3_3, real_time_processing2_g3_3, interpretability2_g3_3, efficiency2_g3_3, combined_score2_g3_3, last_feature_all_techs, reversed_techs
+
+def copy(bias, tech, weights, techs, tech_groups, tech_locations):
+    # Copying the arrays to ensure they are not modified
+    # Convert bias to int8
+    float_bias = bias.astype('f')
+
+    # Convert tech to float32
+    float_tech = tech.astype('f')
+
+    # Convert weights to float32
+    float_weights = weights.astype('f')
+
+    # Convert techs to float32
+    float_techs = techs.astype('f')
+
+    # Convert tech groups to float32
+    float_tech_groups = tech_groups.astype('f')
+
+    # Convert tech locations to float32
+    float_tech_locations = tech_locations.astype('f')
+
+    return float_bias, float_tech, float_weights, float_techs, float_tech_groups, float_tech_locations

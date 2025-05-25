@@ -1,5 +1,5 @@
 from data_generator import generate_data
-from data_analyzer import slice_1D, slice_2D, slice_3D, slice_4D
+from data_analyzer import slice_1D, slice_2D, slice_3D, slice_4D, copy
 
 def main():
     # Load data
@@ -245,5 +245,18 @@ def main():
     print("\n")
     print(f"Last feature from all techs, groups, locations:\n {last_feature_all_techs}")
     print(f"Reverse tech order in every group and location:\n {reversed_techs}")
+    print("\n")
+
+    # Copy data
+    float_bias, float_tech, float_weights, float_techs, float_tech_groups, float_tech_locations = copy(bias, tech, weights, techs, tech_groups, tech_locations)
+    
+    print("Copied Data:")
+    print(f"Bias (float32): {float_bias}\n")
+    print(f"Tech (float32): {float_tech}\n")
+    print(f"Weights (float32): {float_weights}\n")
+    print(f"Techs (float32): {float_techs}\n")
+    print(f"Tech Groups (float32): {float_tech_groups}\n")
+    print(f"Tech Locations (float32): {float_tech_locations}\n")
+
 
 main()
