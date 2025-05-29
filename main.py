@@ -6,7 +6,7 @@ def main():
     bias, techs_labels, tech, weights, techs, tech_group_labels, tech_groups, tech_locations, tech_locations_labels= generate_data()
 
     # Slice 1D data
-    basic, intermediate, advanced, scalability, automation, real_time_processing, interpretability, efficiency, combined_score, last_3_features, reverse_order, w_scalability, w_automation, w_real_time_processing, w_interpretability, w_efficiency, w_combined_score, top_3_features, reversed_alternate_weights = slice_1D(techs_labels, tech, weights)
+    basic, intermediate, advanced, w_scalability, w_automation, w_real_time_processing, w_interpretability, w_efficiency, w_combined_score, top_3_features, reversed_alternate_weights = slice_1D(techs_labels, weights)
 
     # Print 1D data
     print(f"Tech Labels\nBasic: {basic}, Intermediate: {intermediate}, Advanced: {advanced}")
@@ -14,18 +14,6 @@ def main():
     print(f"Tech 1 is labeled as: {basic} (Basic)")
     print(f"Tech 2 is labeled as: {intermediate} (Intermediate)")
     print(f"Tech 3 is labeled as: {advanced} (Advanced)")
-    print("\n")
-
-    print(f"Tech 1 Features: {tech}")
-    print("Scalability:", scalability)
-    print("Automation:", automation)
-    print("Real-time Processing:", real_time_processing)
-    print("Interpretability:", interpretability)
-    print("Efficiency:", efficiency)
-    print("Combined Score:", combined_score)
-    print("\n")
-    print(f"Last 3 Features: {last_3_features}")
-    print("Reversed Order:", reverse_order)
     print("\n")
 
     print(f"Tech Weights: {weights}")
@@ -41,7 +29,19 @@ def main():
     print("\n")
 
     # Slice 2D data
-    tech2, scalability2, automation2, real_time_processing2, interpretability2, efficiency2, combined_score2, tech3, scalability3, automation3, real_time_processing3, interpretability3, efficiency3, combined_score3, last_2_techs, last_feature, reverse_order_techs, legacy, modern, nextgen = slice_2D(techs, tech_group_labels)
+    scalability, automation, real_time_processing, interpretability, efficiency, combined_score, last_3_features, reverse_order, tech2, scalability2, automation2, real_time_processing2, interpretability2, efficiency2, combined_score2, tech3, scalability3, automation3, real_time_processing3, interpretability3, efficiency3, combined_score3, last_2_techs, last_feature, reverse_order_techs, legacy, modern, nextgen = slice_2D(tech, techs, tech_group_labels)
+
+    print(f"Tech 1 Features: {tech}")
+    print("Scalability:", scalability)
+    print("Automation:", automation)
+    print("Real-time Processing:", real_time_processing)
+    print("Interpretability:", interpretability)
+    print("Efficiency:", efficiency)
+    print("Combined Score:", combined_score)
+    print("\n")
+    print(f"Last 3 Features: {last_3_features}")
+    print("Reversed Order:", reverse_order)
+    print("\n")
 
     # Print 2D data
     print(f"Tech 2 Features: {tech2}")

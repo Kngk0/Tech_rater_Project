@@ -9,7 +9,7 @@ def generate_data():
     techs_labels = np.array([0, 1, 2], dtype='u4') # 0: Basic, 1: Intermediate, 2: Advanced
 
     # 1D Array: a single tech's features
-    tech = np.array([5, 1, 3, 2, 3], dtype='u4') # [scalability, automation, real-time processing, interpretability, efficiency]
+    tech = np.array([5, 1, 3, 2, 3], ndmin=2, dtype='u4') # [scalability, automation, real-time processing, interpretability, efficiency]
     weights = np.array([2, 4, 6, 8, 10], dtype='u4') # Importance of each feature
 
     # 2D Array: features of 3 techs

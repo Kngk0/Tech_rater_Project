@@ -1,21 +1,11 @@
 import numpy as np
 from data_generator import generate_data
 
-def slice_1D(tech_labels, tech, weights):
+def slice_1D(tech_labels, weights):
     # Labels for the tech
     basic = tech_labels[-3]
     intermediate = tech_labels[-2]
     advanced = tech_labels[-1]
-
-    # Feature values
-    scalability = tech[-5]
-    automation = tech[-4]
-    real_time_processing = tech[-3]
-    interpretability = tech[-2]
-    efficiency = tech[-1]
-    combined_score = scalability + automation + real_time_processing + interpretability + efficiency
-    last_3_features = tech[-3:]
-    reverse_order = tech[::-1]
 
     # Corresponding weights
     w_scalability = weights[-5]
@@ -27,9 +17,19 @@ def slice_1D(tech_labels, tech, weights):
     top_3_features = weights[-3:]
     reversed_alternate_weights = weights[::-2]
 
-    return basic, intermediate, advanced, scalability, automation, real_time_processing, interpretability, efficiency, combined_score, last_3_features, reverse_order, w_scalability, w_automation, w_real_time_processing, w_interpretability, w_efficiency, w_combined_score, top_3_features, reversed_alternate_weights
+    return basic, intermediate, advanced, w_scalability, w_automation, w_real_time_processing, w_interpretability, w_efficiency, w_combined_score, top_3_features, reversed_alternate_weights
 
-def slice_2D(techs, tech_group_labels):
+def slice_2D(tech, techs, tech_group_labels):
+    # Feature values
+    scalability = tech[0, -5]
+    automation = tech[0, -4]
+    real_time_processing = tech[0, -3]
+    interpretability = tech[0, -2]
+    efficiency = tech[0, -1]
+    combined_score = scalability + automation + real_time_processing + interpretability + efficiency
+    last_3_features = tech[0, -3:]
+    reverse_order = tech[0, ::-1]
+
     # Feature values for the second and third techs
     tech2 = techs[1]
     scalability2 = techs[1, 0]
@@ -54,7 +54,7 @@ def slice_2D(techs, tech_group_labels):
     modern = tech_group_labels[0, 1]
     nextgen = tech_group_labels[0, 2]
 
-    return tech2, scalability2, automation2, real_time_processing2, interpretability2, efficiency2, combined_score2, tech3, scalability3, automation3, real_time_processing3, interpretability3, efficiency3, combined_score3, last_2_techs, last_feature, reverse_order_techs, legacy, modern, nextgen
+    return scalability, automation, real_time_processing, interpretability, efficiency, combined_score, last_3_features, reverse_order, tech2, scalability2, automation2, real_time_processing2, interpretability2, efficiency2, combined_score2, tech3, scalability3, automation3, real_time_processing3, interpretability3, efficiency3, combined_score3, last_2_techs, last_feature, reverse_order_techs, legacy, modern, nextgen
     
 def slice_3D(tech_groups, tech_locations_labels):
     # Feature values for techs in the second and third groups
@@ -209,7 +209,7 @@ def copy_view(bias, techs_labels, tech, weights, techs, tech_group_labels, tech_
     tech_copy_view = tech_copy.view()
 
     # Tech Features: Improve scalability
-    tech_copy[0] = 8
+    tech_copy[0, 0] = 8
 
     # Convert weights to float32
     weights_copy = weights.astype('f')
