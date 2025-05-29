@@ -1,5 +1,5 @@
 from data_generator import generate_data
-from data_analyzer import slice_1D, slice_2D, slice_3D, slice_4D, copy
+from data_analyzer import slice_1D, slice_2D, slice_3D, slice_4D, copy_view
 
 def main():
     # Load data
@@ -248,15 +248,19 @@ def main():
     print("\n")
 
     # Copy data
-    float_bias, float_tech, float_weights, float_techs, float_tech_groups, float_tech_locations = copy(bias, tech, weights, techs, tech_groups, tech_locations)
+    bias_copy, bias_copy_view, techs_labels_copy, techs_labels_copy_view, tech_copy, tech_copy_view, weights_copy, weights_copy_view, techs_copy, techs_copy_view, tech_group_labels_copy, tech_group_labels_copy_view, tech_groups_copy, tech_groups_copy_view, tech_locations_labels_copy, tech_locations_labels_copy_view, tech_locations_copy, tech_locations_copy_view = copy_view(bias, techs_labels, tech, weights, techs, tech_group_labels, tech_groups, tech_locations_labels, tech_locations)
     
-    print("Copied Data:")
-    print(f"Bias (float32): {float_bias}\n")
-    print(f"Tech (float32): {float_tech}\n")
-    print(f"Weights (float32): {float_weights}\n")
-    print(f"Techs (float32): {float_techs}\n")
-    print(f"Tech Groups (float32): {float_tech_groups}\n")
-    print(f"Tech Locations (float32): {float_tech_locations}\n")
-
+    # Print copied modified data
+    print("Copied Modified Data:")
+    print("Bias Copy:", bias_copy)
+    print("Techs Labels Copy:", techs_labels_copy)
+    print("Tech Copy:", tech_copy)
+    print("Weights Copy:", weights_copy)
+    print("Techs Copy:", techs_copy)
+    print("Tech Group Labels Copy:", tech_group_labels_copy)
+    print("Tech Groups Copy:", tech_groups_copy)
+    print("Tech Locations Labels Copy:", tech_locations_labels_copy)
+    print("Tech Locations Copy:", tech_locations_copy)
+    print("\n")
 
 main()

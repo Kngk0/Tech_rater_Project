@@ -100,7 +100,7 @@ def generate_data():
     # print(bias, tech, weights, techs, techs_labels, tech_groups, tech_group_labels, tech_locations, tech_locations_labels)
     # print(type(bias), type(tech), type(weights), type(techs), type(techs_labels), type(tech_groups), type(tech_group_labels), type(tech_locations), type(tech_locations_labels))
     # print(bias.ndim, tech.ndim, weights.ndim, techs.ndim, techs_labels.ndim, tech_groups.ndim, tech_group_labels.ndim, tech_locations.ndim, tech_locations_labels.ndim)
-    print(f"{bias.dtype}\n{techs_labels.dtype}\n{tech.dtype}\n{weights.dtype}\n{techs.dtype}\n{tech_group_labels.dtype}\n{tech_groups.dtype}\n{tech_locations_labels.dtype}\n{tech_locations.dtype}")
+    # print(f"{bias.dtype}\n{techs_labels.dtype}\n{tech.dtype}\n{weights.dtype}\n{techs.dtype}\n{tech_group_labels.dtype}\n{tech_groups.dtype}\n{tech_locations_labels.dtype}\n{tech_locations.dtype}")
 
     return (bias, techs_labels, tech, weights, techs, tech_group_labels, tech_groups, tech_locations, tech_locations_labels)
 
