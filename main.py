@@ -1,5 +1,5 @@
 from data_generator import generate_data
-from data_analyzer import slice_1D, slice_2D, slice_3D, slice_4D, copy_view
+from data_analyzer import slice_1D, slice_2D, slice_3D, slice_4D, copy_view, reshape_array
 
 def main():
     # Load data
@@ -262,5 +262,12 @@ def main():
     print("Tech Locations Labels Copy:", tech_locations_labels_copy)
     print("Tech Locations Copy:", tech_locations_copy)
     print("\n")
+
+    reshaped_labels, reshaped_weights, reshaped_locations = reshape_array(techs_labels, weights, tech_locations)
+    # Print reshaped data
+    print("Reshaped Data:")
+    print("Reshaped Techs Labels:", reshaped_labels)
+    print("Reshaped Weights:", reshaped_weights)
+    print("Reshaped Tech Locations:", reshaped_locations)
 
 main()

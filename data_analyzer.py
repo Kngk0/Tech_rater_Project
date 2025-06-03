@@ -257,9 +257,27 @@ def copy_view(bias, techs_labels, tech, weights, techs, tech_group_labels, tech_
     # 4D Tech Locations: Enhance scalability for Tech 1 in Location 2, Group 1
     tech_locations_copy[1, 0, 0, 0] = 9
 
-    print(f"{bias_copy.base}\n{bias_copy_view.base}\n{techs_labels_copy.base}\n{techs_labels_copy_view.base}\n{tech_copy.base}\n{tech_copy_view.base}\n{weights_copy.base}\n{weights_copy_view.base}\n{techs_copy.base}\n{techs_copy_view.base}\n{tech_group_labels_copy.base}\n{tech_group_labels_copy_view.base}\n{tech_groups_copy.base}\n{tech_groups_copy_view.base}\n{tech_locations_labels_copy.base}\n{tech_locations_labels_copy_view.base}\n{tech_locations_copy.base}\n{tech_locations_copy_view.base}")
+    # print(f"{bias_copy.base}\n{bias_copy_view.base}\n{techs_labels_copy.base}\n{techs_labels_copy_view.base}\n{tech_copy.base}\n{tech_copy_view.base}\n{weights_copy.base}\n{weights_copy_view.base}\n{techs_copy.base}\n{techs_copy_view.base}\n{tech_group_labels_copy.base}\n{tech_group_labels_copy_view.base}\n{tech_groups_copy.base}\n{tech_groups_copy_view.base}\n{tech_locations_labels_copy.base}\n{tech_locations_labels_copy_view.base}\n{tech_locations_copy.base}\n{tech_locations_copy_view.base}")
 
     return bias_copy, bias_copy_view, techs_labels_copy, techs_labels_copy_view, tech_copy, tech_copy_view, weights_copy, weights_copy_view, techs_copy, techs_copy_view, tech_group_labels_copy, tech_group_labels_copy_view, tech_groups_copy, tech_groups_copy_view, tech_locations_labels_copy, tech_locations_labels_copy_view, tech_locations_copy, tech_locations_copy_view
 
 bias, techs_labels, tech, weights, techs, tech_group_labels, tech_groups, tech_locations, tech_locations_labels= generate_data()
 copy_view(bias, techs_labels, tech, weights, techs, tech_group_labels, tech_groups, tech_locations_labels, tech_locations)
+
+def reshape_array(tech_labels, weights, tech_locations):
+    # Reshape tech labels to a 2D array with 3 rows and 1 column
+    reshaped_labels = tech_labels.reshape(-1, 1)
+
+    # Reshape weights to a 3D array with 1 row and 5 columns
+    reshaped_weights = weights.reshape(1, 1, 5)
+
+    # Reshape tech locations to a 1D array
+    reshaped_locations = tech_locations.reshape(-1)
+
+    print(f"{reshaped_labels.base}\n{reshaped_weights.base}\n{reshaped_locations.base}")
+    print(f"{reshaped_labels.shape}\n{reshaped_weights.shape}\n{reshaped_locations.shape}")
+    # print(f"{tech_labels.shape}\n{weights.shape}")
+
+    return reshaped_labels, reshaped_weights, reshaped_locations
+
+reshaped_labels, reshaped_weights, reshaped_locations = reshape_array(techs_labels, weights, tech_locations)
