@@ -1,5 +1,6 @@
 from data_generator import generate_data
 from data_analyzer import slice_1D, slice_2D, slice_3D, slice_4D, copy_view, reshape_array
+import numpy as np
 
 def main():
     # Load data
@@ -11,12 +12,18 @@ def main():
     # Print 1D data
     print(f"Tech Labels\nBasic: {basic}, Intermediate: {intermediate}, Advanced: {advanced}")
     print("\n")
+    for x in techs_labels:
+        print(x)
+    print("\n")
     print(f"Tech 1 is labeled as: {basic} (Basic)")
     print(f"Tech 2 is labeled as: {intermediate} (Intermediate)")
     print(f"Tech 3 is labeled as: {advanced} (Advanced)")
     print("\n")
 
     print(f"Tech Weights: {weights}")
+    for x in weights:
+        print(x)
+    print("\n")
     print("Scalability Weight:", w_scalability)
     print("Automation Weight:", w_automation)
     print("Real-time Processing Weight:", w_real_time_processing)
@@ -31,6 +38,7 @@ def main():
     # Slice 2D data
     scalability, automation, real_time_processing, interpretability, efficiency, combined_score, last_3_features, reverse_order, tech2, scalability2, automation2, real_time_processing2, interpretability2, efficiency2, combined_score2, tech3, scalability3, automation3, real_time_processing3, interpretability3, efficiency3, combined_score3, last_2_techs, last_feature, reverse_order_techs, legacy, modern, nextgen = slice_2D(tech, techs, tech_group_labels)
 
+    # Print 2D data
     print(f"Tech 1 Features: {tech}")
     print("Scalability:", scalability)
     print("Automation:", automation)
@@ -39,11 +47,15 @@ def main():
     print("Efficiency:", efficiency)
     print("Combined Score:", combined_score)
     print("\n")
+    print("Iterating Tech 1 Features:")
+    for x in tech:
+        for y in x:
+            print(y)
+    print("\n")
     print(f"Last 3 Features: {last_3_features}")
     print("Reversed Order:", reverse_order)
     print("\n")
 
-    # Print 2D data
     print(f"Tech 2 Features: {tech2}")
     print("Scalability:", scalability2)
     print("Automation:", automation2)
@@ -52,6 +64,7 @@ def main():
     print("Efficiency:", efficiency2)
     print("Combined Score:", combined_score2)
     print("\n")
+
     print(f"Tech 3 Features: {tech3}")
     print("Scalability:", scalability3)
     print("Automation:", automation3)
@@ -59,6 +72,11 @@ def main():
     print("Interpretability:", interpretability3)
     print("Efficiency:", efficiency3)
     print("Combined Score:", combined_score3)
+    print("\n")
+    print("Iterating Techs:")
+    for x in techs:
+        for y in x:
+            print(y)
     print("\n")
     print(f"Last 2 Techs:\n {last_2_techs}")
     print("Last feature from each tech:", last_feature)
@@ -70,6 +88,12 @@ def main():
     print(f"Tech 1 in each group is labeled as: {legacy} (Legacy)")
     print(f"Tech 2 in each group is labeled as: {modern} (Modern)")
     print(f"Tech 3 in each group is labeled as: {nextgen} (NextGen)")
+    print("\n")
+
+    print("Iterating Tech Group Labels:")
+    for x in tech_group_labels:
+        for y in x:
+            print(y)
     print("\n")
 
     # Slice 3D data
@@ -129,7 +153,13 @@ def main():
     print(f"Last Group Features:\n {last_group}")
     print(f"Last 2 Features of each tech:\n {last_2_features}")
     print("\n")
-    
+
+    print("Iterating over tech groups:")
+    for x in tech_groups:
+        for y in x:
+            for z in y:
+                print(z)
+    print("\n")
     print(f"Tech Location Labels\nCloud: {cloud}, Edge: {edge}, On-Premises: {on_premises}")
     print("\n")
     print("Location 1")
@@ -162,6 +192,12 @@ def main():
     print(f"In Group 2, Tech 3 is an {on_premises} (On-Premises) solution")
     print(f"In Group 3, Tech 3 is an {on_premises} (On-Premises) solution")
     print("\n")
+
+    print("Iterating over Tech Locations Labels:")
+    for x in np.nditer(tech_locations_labels):
+        print(x)
+    print("\n")
+
     
     # Slice 4D data
     tech_location2, tech_location2_g1, tech_location2_g1_1, scalability2_g1_1, automation2_g1_1, real_time_processing2_g1_1, interpretability2_g1_1, efficiency2_g1_1, combined_score2_g1_1, tech_location2_g1_2, scalability2_g1_2, automation2_g1_2, real_time_processing2_g1_2, interpretability2_g1_2, efficiency2_g1_2, combined_score2_g1_2, tech_location2_g1_3, scalability2_g1_3, automation2_g1_3, real_time_processing2_g1_3, interpretability2_g1_3, efficiency2_g1_3, combined_score2_g1_3, tech_location2_g2, tech_location2_g2_1, scalability2_g2_1, automation2_g2_1, real_time_processing2_g2_1, interpretability2_g2_1, efficiency2_g2_1, combined_score2_g2_1, tech_location2_g2_2, scalability2_g2_2, automation2_g2_2, real_time_processing2_g2_2, interpretability2_g2_2, efficiency2_g2_2, combined_score2_g2_2, tech_location2_g2_3, scalability2_g2_3, automation2_g2_3, real_time_processing2_g2_3, interpretability2_g2_3, efficiency2_g2_3, combined_score2_g2_3, tech_location2_g3, tech_location2_g3_1, scalability2_g3_1, automation2_g3_1, real_time_processing2_g3_1, interpretability2_g3_1, efficiency2_g3_1, combined_score2_g3_1, tech_location2_g3_2, scalability2_g3_2, automation2_g3_2, real_time_processing2_g3_2, interpretability2_g3_2, efficiency2_g3_2, combined_score2_g3_2, tech_location2_g3_3, scalability2_g3_3, automation2_g3_3, real_time_processing2_g3_3, interpretability2_g3_3, efficiency2_g3_3, combined_score2_g3_3, last_feature_all_techs, reversed_techs = slice_4D(tech_locations)
@@ -247,6 +283,11 @@ def main():
     print(f"Reverse tech order in every group and location:\n {reversed_techs}")
     print("\n")
 
+    print("Iterating over all values in Tech Locations as string types:")
+    for x in np.nditer(tech_locations, flags=['buffered'], op_dtypes=['S']):
+        print(x)
+    print("\n")
+
     # Copy data
     bias_copy, bias_copy_view, techs_labels_copy, techs_labels_copy_view, tech_copy, tech_copy_view, weights_copy, weights_copy_view, techs_copy, techs_copy_view, tech_group_labels_copy, tech_group_labels_copy_view, tech_groups_copy, tech_groups_copy_view, tech_locations_labels_copy, tech_locations_labels_copy_view, tech_locations_copy, tech_locations_copy_view = copy_view(bias, techs_labels, tech, weights, techs, tech_group_labels, tech_groups, tech_locations_labels, tech_locations)
     
@@ -257,6 +298,12 @@ def main():
     print("Tech Copy:", tech_copy)
     print("Weights Copy:", weights_copy)
     print("Techs Copy:", techs_copy)
+
+    print("Iterating through Techs Copy with step size 2 (columns):")
+    for x in np.nditer(techs_copy[:, ::2]):
+        print(x)
+    print("\n")
+
     print("Tech Group Labels Copy:", tech_group_labels_copy)
     print("Tech Groups Copy:", tech_groups_copy)
     print("Tech Locations Labels Copy:", tech_locations_labels_copy)
@@ -269,5 +316,13 @@ def main():
     print("Reshaped Techs Labels:", reshaped_labels)
     print("Reshaped Weights:", reshaped_weights)
     print("Reshaped Tech Locations:", reshaped_locations)
+
+    print("\nIndex and value pairs from reshaped tech locations:")
+    for idx, x in np.ndenumerate(reshaped_locations):
+        print(f"Index: {idx}, Value: {x}")
+
+    print("\nIndex and value pairs from rehaped labels:")
+    for idx, x in np.ndenumerate(reshaped_labels):
+        print(f"Index: {idx}, Value: {x}")
 
 main()

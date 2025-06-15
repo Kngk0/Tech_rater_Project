@@ -261,23 +261,24 @@ def copy_view(bias, techs_labels, tech, weights, techs, tech_group_labels, tech_
 
     return bias_copy, bias_copy_view, techs_labels_copy, techs_labels_copy_view, tech_copy, tech_copy_view, weights_copy, weights_copy_view, techs_copy, techs_copy_view, tech_group_labels_copy, tech_group_labels_copy_view, tech_groups_copy, tech_groups_copy_view, tech_locations_labels_copy, tech_locations_labels_copy_view, tech_locations_copy, tech_locations_copy_view
 
-bias, techs_labels, tech, weights, techs, tech_group_labels, tech_groups, tech_locations, tech_locations_labels= generate_data()
-copy_view(bias, techs_labels, tech, weights, techs, tech_group_labels, tech_groups, tech_locations_labels, tech_locations)
+# bias, techs_labels, tech, weights, techs, tech_group_labels, tech_groups, tech_locations, tech_locations_labels= generate_data()
+# copy_view(bias, techs_labels, tech, weights, techs, tech_group_labels, tech_groups, tech_locations_labels, tech_locations)
 
-def reshape_array(tech_labels, weights, tech_locations):
+def reshape_array(tech_labels_copy, weights_copy, tech_locations_copy):
     # Reshape tech labels to a 2D array with 3 rows and 1 column
-    reshaped_labels = tech_labels.reshape(-1, 1)
+    reshaped_labels = tech_labels_copy.reshape(-1, 1)
 
     # Reshape weights to a 3D array with 1 row and 5 columns
-    reshaped_weights = weights.reshape(1, 1, 5)
+    reshaped_weights = weights_copy.reshape(1, 1, 5)
 
     # Reshape tech locations to a 1D array
-    reshaped_locations = tech_locations.reshape(-1)
+    reshaped_locations = tech_locations_copy.reshape(-1)
 
-    print(f"{reshaped_labels.base}\n{reshaped_weights.base}\n{reshaped_locations.base}")
-    print(f"{reshaped_labels.shape}\n{reshaped_weights.shape}\n{reshaped_locations.shape}")
+    # print(f"{reshaped_labels.base}\n{reshaped_weights.base}\n{reshaped_locations.base}")
+    # print(f"{reshaped_labels.shape}\n{reshaped_weights.shape}\n{reshaped_locations.shape}")
     # print(f"{tech_labels.shape}\n{weights.shape}")
+    # print(reshaped_locations)
 
     return reshaped_labels, reshaped_weights, reshaped_locations
 
-reshaped_labels, reshaped_weights, reshaped_locations = reshape_array(techs_labels, weights, tech_locations)
+# reshaped_labels, reshaped_weights, reshaped_locations = reshape_array(techs_labels, weights, tech_locations)
