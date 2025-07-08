@@ -257,6 +257,7 @@ def copy_view(bias, techs_labels, tech, weights, techs, tech_group_labels, tech_
     # 4D Tech Locations: Enhance scalability for Tech 1 in Location 2, Group 1
     tech_locations_copy[1, 0, 0, 0] = 9
 
+    # print(f"{bias_copy}\n{bias_copy_view}\n{techs_labels_copy}\n{techs_labels_copy_view}\n{tech_copy}\n{tech_copy_view}\n{weights_copy}\n{weights_copy_view}\n{techs_copy}\n{techs_copy_view}\n{tech_group_labels_copy}\n{tech_group_labels_copy_view}\n{tech_groups_copy}\n{tech_groups_copy_view}\n{tech_locations_labels_copy}\n{tech_locations_labels_copy_view}\n{tech_locations_copy}\n{tech_locations_copy_view}")
     # print(f"{bias_copy.base}\n{bias_copy_view.base}\n{techs_labels_copy.base}\n{techs_labels_copy_view.base}\n{tech_copy.base}\n{tech_copy_view.base}\n{weights_copy.base}\n{weights_copy_view.base}\n{techs_copy.base}\n{techs_copy_view.base}\n{tech_group_labels_copy.base}\n{tech_group_labels_copy_view.base}\n{tech_groups_copy.base}\n{tech_groups_copy_view.base}\n{tech_locations_labels_copy.base}\n{tech_locations_labels_copy_view.base}\n{tech_locations_copy.base}\n{tech_locations_copy_view.base}")
 
     return bias_copy, bias_copy_view, techs_labels_copy, techs_labels_copy_view, tech_copy, tech_copy_view, weights_copy, weights_copy_view, techs_copy, techs_copy_view, tech_group_labels_copy, tech_group_labels_copy_view, tech_groups_copy, tech_groups_copy_view, tech_locations_labels_copy, tech_locations_labels_copy_view, tech_locations_copy, tech_locations_copy_view
@@ -282,3 +283,24 @@ def reshape_array(tech_labels_copy, weights_copy, tech_locations_copy):
     return reshaped_labels, reshaped_weights, reshaped_locations
 
 # reshaped_labels, reshaped_weights, reshaped_locations = reshape_array(techs_labels, weights, tech_locations)
+
+def join(last_feature, reversed_alternate_weights, techs, reshaped_labels, last_3_features, top_3_features, tech_group_labels, tech_group_labels_copy, reverse_order, weights, tech, tech_copy):
+    # Join the last feature and reversed alternate weights into a single 1D array
+    efficiency_vs_weights = np.concatenate((last_feature, reversed_alternate_weights))
+
+    # Join the techs and reshaped labels into a 2D array
+    techs_with_labels = np.concatenate((techs, reshaped_labels), axis=1)
+
+    # Join the last 3 features of tech 1 and top 3 features into a 2D array
+    top_features_and_weights = np.stack((last_3_features, top_3_features), axis=1)
+
+    # Join the complexity labels of the techs with the generation labels
+    complexity_labels = np.hstack((tech_group_labels, tech_group_labels_copy))
+
+    # Join the reversed features of tech with the weights
+    reversed_features_and_weights = np.vstack((reverse_order, weights))
+
+    # Join the tech features with the modified tech features
+    original_vs_modified = np.dstack((tech, tech_copy))
+
+    return efficiency_vs_weights, techs_with_labels, top_features_and_weights, complexity_labels, reversed_features_and_weights, original_vs_modified

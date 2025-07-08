@@ -1,5 +1,5 @@
 from data_generator import generate_data
-from data_analyzer import slice_1D, slice_2D, slice_3D, slice_4D, copy_view, reshape_array
+from data_analyzer import slice_1D, slice_2D, slice_3D, slice_4D, copy_view, reshape_array, join
 import numpy as np
 
 def main():
@@ -324,5 +324,17 @@ def main():
     print("\nIndex and value pairs from rehaped labels:")
     for idx, x in np.ndenumerate(reshaped_labels):
         print(f"Index: {idx}, Value: {x}")
+
+    # Join data
+    efficiency_vs_weights, techs_with_labels, top_features_and_weights, complexity_labels, reversed_features_and_weights, original_vs_modified = join(last_feature, reversed_alternate_weights, techs, reshaped_labels, last_3_features, top_3_features, tech_group_labels, tech_group_labels_copy, reverse_order, weights, tech, tech_copy)
+
+    # Print joined data
+    print("Joined Data:")
+    print("Efficiency vs Weights reversed:", efficiency_vs_weights)
+    print("Techs with Labels:", techs_with_labels)
+    print("Top Features and Weights:", top_features_and_weights)
+    print("Original and Modified Complexity Labels:", complexity_labels)
+    print("Reversed Features and Weights:", reversed_features_and_weights)
+    print("Original vs Modified Tech Features:", original_vs_modified)
 
 main()
