@@ -304,3 +304,18 @@ def join(last_feature, reversed_alternate_weights, techs, reshaped_labels, last_
     original_vs_modified = np.dstack((tech, tech_copy))
 
     return efficiency_vs_weights, techs_with_labels, top_features_and_weights, complexity_labels, reversed_features_and_weights, original_vs_modified
+
+def split(weights, techs, tech_groups, tech_locations):
+    # Split the weights into 3 equal parts
+    weight_batches = np.array_split(weights, 3)
+
+    # Split the techs into 3 equal parts
+    tech_batches = np.array_split(techs, 3, axis=1)
+
+    # Split the techs in the other 2 groups into 3 equal parts
+    tech_groups_batches = np.array_split(tech_groups[1:], 3, axis=2)
+
+    # Split the techs in the other 2 locations into 3 equal parts
+    tech_locations_batches = np.array_split(tech_locations[1:], 3, axis=3)
+    
+    return weight_batches, tech_batches, tech_groups_batches, tech_locations_batches
