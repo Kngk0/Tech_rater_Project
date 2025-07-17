@@ -319,3 +319,11 @@ def split(weights, techs, tech_groups, tech_locations):
     tech_locations_batches = np.array_split(tech_locations[1:], 3, axis=3)
     
     return weight_batches, tech_batches, tech_groups_batches, tech_locations_batches
+
+def search(tech_locations):
+    # Search for passing tech features in the tech locations
+    passing_features = np.where(tech_locations >= 7)
+    failing_features = np.where(tech_locations < 7)
+    top_techs = np.where(tech_locations > 8)
+
+    return passing_features, failing_features, top_techs
