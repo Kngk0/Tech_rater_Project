@@ -326,7 +326,7 @@ def main():
         print(f"Index: {idx}, Value: {x}")
 
     # Join data
-    efficiency_vs_weights, techs_with_labels, top_features_and_weights, complexity_labels, reversed_features_and_weights, original_vs_modified = join(last_feature, reversed_alternate_weights, techs, reshaped_labels, last_3_features, top_3_features, tech_group_labels, tech_group_labels_copy, reverse_order, weights, tech, tech_copy)
+    efficiency_vs_weights, techs_with_labels, top_features_and_weights, complexity_labels, reversed_features_and_weights, original_vs_modified = join(techs_copy, weights_copy, reshaped_labels, tech_group_labels, tech_group_labels_copy, tech, tech_copy)
 
     # Print joined data
     print("Joined Data:")
@@ -339,7 +339,7 @@ def main():
 
     # Split data
     print("\nSplitting Data for Feature Analysis:")
-    weight_batches, tech_batches, tech_groups_batches, tech_locations_batches = split(weights, techs, tech_groups, tech_locations)
+    weight_batches, tech_batches, tech_groups_batches, tech_locations_batches = split(weights_copy, techs_copy, tech_groups_copy, tech_locations_copy)
     # Print split weights
     print("Split Data for Feature Analysis:")
     print("Scaling & Speed weight batch:", weight_batches[0])
@@ -359,7 +359,7 @@ def main():
     print("Explainability batch from Tech Locations:", tech_locations_batches[2])
 
     # Search data
-    passing_features, failing_features, top_techs = search(tech_locations)
+    passing_features, failing_features, top_techs = search(tech_locations_copy)
 
     # Print search results
     print("\nPassing Features in Tech Locations:")
@@ -369,23 +369,7 @@ def main():
     print("Indices of Failing Features:", failing_features)
     print("Failing features:", tech_locations[failing_features])
     print("\n")
-    print("Top Techs in all Locations:")
-    print("Indices of Top Techs:", top_techs)
-    print("Top techs:", tech_locations[top_techs])
-
-    # Search data
-    passing_features, failing_features, top_techs = search(tech_locations)
-
-    # Print search results
-    print("\nPassing Features in Tech Locations:")
-    print("Indices of Passing Features:", passing_features)
-    print("Passing features:", tech_locations[passing_features])
-    print("\nFailing Features in Tech Locations:")
-    print("Indices of Failing Features:", failing_features)
-    print("Failing features:", tech_locations[failing_features])
+    print("Top Techs in all Locations:", top_techs)
     print("\n")
-    print("Top Techs in all Locations:")
-    print("Indices of Top Techs:", top_techs)
-    print("Top techs:", tech_locations[top_techs])
 
 main()

@@ -284,46 +284,46 @@ def reshape_array(tech_labels_copy, weights_copy, tech_locations_copy):
 
 # reshaped_labels, reshaped_weights, reshaped_locations = reshape_array(techs_labels, weights, tech_locations)
 
-def join(last_feature, reversed_alternate_weights, techs, reshaped_labels, last_3_features, top_3_features, tech_group_labels, tech_group_labels_copy, reverse_order, weights, tech, tech_copy):
+def join(techs_copy, weights_copy, reshaped_labels, tech_group_labels, tech_group_labels_copy, tech, tech_copy):
     # Join the last feature and reversed alternate weights into a single 1D array
-    efficiency_vs_weights = np.concatenate((last_feature, reversed_alternate_weights))
+    efficiency_vs_weights = np.concatenate((techs_copy[:, -1], weights_copy[::-2]))
 
     # Join the techs and reshaped labels into a 2D array
-    techs_with_labels = np.concatenate((techs, reshaped_labels), axis=1)
+    techs_with_labels = np.concatenate((techs_copy, reshaped_labels), axis=1)
 
     # Join the last 3 features of tech 1 and top 3 features into a 2D array
-    top_features_and_weights = np.stack((last_3_features, top_3_features), axis=1)
+    top_features_and_weights = np.stack((tech_copy[0, -3:], weights_copy[-3:]), axis=1)
 
     # Join the complexity labels of the techs with the generation labels
     complexity_labels = np.hstack((tech_group_labels, tech_group_labels_copy))
 
     # Join the reversed features of tech with the weights
-    reversed_features_and_weights = np.vstack((reverse_order, weights))
+    reversed_features_and_weights = np.vstack((tech_copy[0, ::-1], weights_copy))
 
     # Join the tech features with the modified tech features
     original_vs_modified = np.dstack((tech, tech_copy))
 
     return efficiency_vs_weights, techs_with_labels, top_features_and_weights, complexity_labels, reversed_features_and_weights, original_vs_modified
 
-def split(weights, techs, tech_groups, tech_locations):
+def split(weights_copy, techs_copy, tech_groups_copy, tech_locations_copy):
     # Split the weights into 3 equal parts
-    weight_batches = np.array_split(weights, 3)
+    weight_batches = np.array_split(weights_copy, 3)
 
     # Split the techs into 3 equal parts
-    tech_batches = np.array_split(techs, 3, axis=1)
+    tech_batches = np.array_split(techs_copy, 3, axis=1)
 
     # Split the techs in the other 2 groups into 3 equal parts
-    tech_groups_batches = np.array_split(tech_groups[1:], 3, axis=2)
+    tech_groups_batches = np.array_split(tech_groups_copy[1:], 3, axis=2)
 
     # Split the techs in the other 2 locations into 3 equal parts
-    tech_locations_batches = np.array_split(tech_locations[1:], 3, axis=3)
-    
+    tech_locations_batches = np.array_split(tech_locations_copy[1:], 3, axis=3)
+
     return weight_batches, tech_batches, tech_groups_batches, tech_locations_batches
 
-def search(tech_locations):
+def search(tech_locations_copy):
     # Search for passing tech features in the tech locations
-    passing_features = np.where(tech_locations >= 7)
-    failing_features = np.where(tech_locations < 7)
-    top_techs = np.where(tech_locations > 8)
+    passing_features = np.where(tech_locations_copy >= 7)
+    failing_features = np.where(tech_locations_copy < 7)
+    top_techs = tech_locations_copy[np.where(tech_locations_copy > 8)]
 
     return passing_features, failing_features, top_techs
