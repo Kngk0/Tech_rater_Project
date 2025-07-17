@@ -1,5 +1,5 @@
 from data_generator import generate_data
-from data_analyzer import slice_1D, slice_2D, slice_3D, slice_4D, copy_view, reshape_array, join, split, search
+from data_analyzer import slice_1D, slice_2D, slice_3D, slice_4D, copy_view, reshape_array, join
 import numpy as np
 
 def main():
@@ -336,42 +336,5 @@ def main():
     print("Original and Modified Complexity Labels:", complexity_labels)
     print("Reversed Features and Weights:", reversed_features_and_weights)
     print("Original vs Modified Tech Features:", original_vs_modified)
-
-    # Split data
-    print("\nSplitting Data for Feature Analysis:")
-    weight_batches, tech_batches, tech_groups_batches, tech_locations_batches = split(weights, techs, tech_groups, tech_locations)
-
-    # Print split data
-    print("Split Data for Feature Analysis:")
-    print("Scaling & Speed weight batch:", weight_batches[0])
-    print("Process Automation weight batch:", weight_batches[1])
-    print("Explainability weight batch:", weight_batches[2])
-    print("\n")
-    print("Scaling & Speed batch:", tech_batches[0])
-    print("Process Automation batch:", tech_batches[1])
-    print("Explainability batch:", tech_batches[2])
-    print("\n")
-    print("Scaling & Speed batch from Tech Groups:", tech_groups_batches[0])
-    print("Process Automation batch from Tech Groups:", tech_groups_batches[1])
-    print("Explainability batch fromTech Groups:", tech_groups_batches[2])
-    print("\n")
-    print("Scaling & Speed batch from Tech Locations:", tech_locations_batches[0])
-    print("Process Automation batch from Tech Locations:", tech_locations_batches[1])
-    print("Explainability batch from Tech Locations:", tech_locations_batches[2])
-
-    # Search data
-    passing_features, failing_features, top_techs = search(tech_locations)
-
-    # Print search results
-    print("\nPassing Features in Tech Locations:")
-    print("Indices of Passing Features:", passing_features)
-    print("Passing features:", tech_locations[passing_features])
-    print("\nFailing Features in Tech Locations:")
-    print("Indices of Failing Features:", failing_features)
-    print("Failing features:", tech_locations[failing_features])
-    print("\n")
-    print("Top Techs in all Locations:")
-    print("Indices of Top Techs:", top_techs)
-    print("Top techs:", tech_locations[top_techs])
 
 main()
