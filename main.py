@@ -337,11 +337,10 @@ def main():
     print("Reversed Features and Weights:", reversed_features_and_weights)
     print("Original vs Modified Tech Features:", original_vs_modified)
 
-        # Split data
+    # Split data
     print("\nSplitting Data for Feature Analysis:")
     weight_batches, tech_batches, tech_groups_batches, tech_locations_batches = split(weights, techs, tech_groups, tech_locations)
-
-    # Print split data
+    # Print split weights
     print("Split Data for Feature Analysis:")
     print("Scaling & Speed weight batch:", weight_batches[0])
     print("Process Automation weight batch:", weight_batches[1])
@@ -358,6 +357,21 @@ def main():
     print("Scaling & Speed batch from Tech Locations:", tech_locations_batches[0])
     print("Process Automation batch from Tech Locations:", tech_locations_batches[1])
     print("Explainability batch from Tech Locations:", tech_locations_batches[2])
+
+    # Search data
+    passing_features, failing_features, top_techs = search(tech_locations)
+
+    # Print search results
+    print("\nPassing Features in Tech Locations:")
+    print("Indices of Passing Features:", passing_features)
+    print("Passing features:", tech_locations[passing_features])
+    print("\nFailing Features in Tech Locations:")
+    print("Indices of Failing Features:", failing_features)
+    print("Failing features:", tech_locations[failing_features])
+    print("\n")
+    print("Top Techs in all Locations:")
+    print("Indices of Top Techs:", top_techs)
+    print("Top techs:", tech_locations[top_techs])
 
     # Search data
     passing_features, failing_features, top_techs = search(tech_locations)
