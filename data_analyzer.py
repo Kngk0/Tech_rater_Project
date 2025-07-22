@@ -2,6 +2,10 @@ import numpy as np
 from data_generator import generate_data
 
 def slice_1D(tech_labels, weights):
+    """
+    Slices 1D technology labels and weights for evaluation.
+    Returns key labels and computed features.
+    """
     # Labels for the tech
     basic = tech_labels[-3]
     intermediate = tech_labels[-2]
@@ -20,6 +24,9 @@ def slice_1D(tech_labels, weights):
     return basic, intermediate, advanced, w_scalability, w_automation, w_real_time_processing, w_interpretability, w_efficiency, w_combined_score, top_3_features, reversed_alternate_weights
 
 def slice_2D(tech, techs, tech_group_labels):
+    """
+    Slices 2D technology data, extracting key features and labels.
+    """
     # Feature values
     scalability = tech[0, -5]
     automation = tech[0, -4]
@@ -57,6 +64,9 @@ def slice_2D(tech, techs, tech_group_labels):
     return scalability, automation, real_time_processing, interpretability, efficiency, combined_score, last_3_features, reverse_order, tech2, scalability2, automation2, real_time_processing2, interpretability2, efficiency2, combined_score2, tech3, scalability3, automation3, real_time_processing3, interpretability3, efficiency3, combined_score3, last_2_techs, last_feature, reverse_order_techs, legacy, modern, nextgen
     
 def slice_3D(tech_groups, tech_locations_labels):
+    """
+    Slices 3D technology data, extracting key features and labels.
+    """
     # Feature values for techs in the second and third groups
     tech_group2 = tech_groups[1]
     tech2_1 = tech_groups[1, 0]
@@ -113,6 +123,9 @@ def slice_3D(tech_groups, tech_locations_labels):
     return tech_group2, tech2_1, scalability2_1, automation2_1, real_time_processing2_1, interpretability2_1, efficiency2_1, combined_score2_1, tech2_2, scalability2_2, automation2_2, real_time_processing2_2, interpretability2_2, efficiency2_2, combined_score2_2, tech2_3, scalability2_3, automation2_3, real_time_processing2_3, interpretability2_3, efficiency2_3, combined_score2_3, tech_group3, tech3_1, scalability3_1, automation3_1, real_time_processing3_1, interpretability3_1, efficiency3_1, combined_score3_1, tech3_2, scalability3_2, automation3_2, real_time_processing3_2, interpretability3_2, efficiency3_2, combined_score3_2, tech3_3, scalability3_3, automation3_3, real_time_processing3_3, interpretability3_3, efficiency3_3, combined_score3_3, last_group, last_2_features, cloud, edge, on_premises
 
 def slice_4D(tech_locations):
+    """
+    Slices 4D technology data, extracting key features and labels.
+    """
     tech_location2 = tech_locations[1]
     tech_location2_g1 = tech_locations[1, 0]
     tech_location2_g1_1 = tech_locations[1, 0, 0]
@@ -185,104 +198,141 @@ def slice_4D(tech_locations):
 
     return tech_location2, tech_location2_g1, tech_location2_g1_1, scalability2_g1_1, automation2_g1_1, real_time_processing2_g1_1, interpretability2_g1_1, efficiency2_g1_1, combined_score2_g1_1, tech_location2_g1_2, scalability2_g1_2, automation2_g1_2, real_time_processing2_g1_2, interpretability2_g1_2, efficiency2_g1_2, combined_score2_g1_2, tech_location2_g1_3, scalability2_g1_3, automation2_g1_3, real_time_processing2_g1_3, interpretability2_g1_3, efficiency2_g1_3, combined_score2_g1_3, tech_location2_g2, tech_location2_g2_1, scalability2_g2_1, automation2_g2_1, real_time_processing2_g2_1, interpretability2_g2_1, efficiency2_g2_1, combined_score2_g2_1, tech_location2_g2_2, scalability2_g2_2, automation2_g2_2, real_time_processing2_g2_2, interpretability2_g2_2, efficiency2_g2_2, combined_score2_g2_2, tech_location2_g2_3, scalability2_g2_3, automation2_g2_3, real_time_processing2_g2_3, interpretability2_g2_3, efficiency2_g2_3, combined_score2_g2_3, tech_location2_g3, tech_location2_g3_1, scalability2_g3_1, automation2_g3_1, real_time_processing2_g3_1, interpretability2_g3_1, efficiency2_g3_1, combined_score2_g3_1, tech_location2_g3_2, scalability2_g3_2, automation2_g3_2, real_time_processing2_g3_2, interpretability2_g3_2, efficiency2_g3_2, combined_score2_g3_2, tech_location2_g3_3, scalability2_g3_3, automation2_g3_3, real_time_processing2_g3_3, interpretability2_g3_3, efficiency2_g3_3, combined_score2_g3_3, last_feature_all_techs, reversed_techs
 
-def copy_view(bias, techs_labels, tech, weights, techs, tech_group_labels, tech_groups, tech_locations_labels, tech_locations):
+def copy_view(bias, top_3_features, reversed_alternate_weights, last_3_features, reverse_order, last_2_techs, last_feature, reverse_order_techs, last_group, last_2_features, last_feature_all_techs, reversed_techs):
     # Create a copy of the original arrays to avoid modifying the original data
 
-    # Convert bias to int8
+    # Convert bias to float32 for compatibility
     bias_copy = bias.astype('f')
 
     bias_copy_view = bias_copy.view()
 
     # Bias: Shift opinion from Positive to Negative
-    bias_copy[...] = -1.0  # Example modification to show that the original will not change
+    bias_copy_view[...] = -1.0  # Example modification to show that the original will not change
 
-    techs_labels_copy = techs_labels.copy()
-    
-    techs_labels_copy_view = techs_labels_copy.view()
+    # Convert top 3 features to float32 for compatibility
+    top_3_features_copy = top_3_features.astype('f')
 
-    # Techs Labels: Downgrade Advanced (2) to Intermediate (1)
-    techs_labels_copy[2] = 1
+    top_3_features_copy_view = top_3_features_copy.view()
 
-    # Convert tech to float32
-    tech_copy = tech.astype('f')
+    # Modify the top 3 features
+    top_3_features_copy_view[0] = 10.0  # Example modification
 
-    tech_copy_view = tech_copy.view()
+    # Convert reversed alternate weights to float32 for compatibility
+    reversed_alternate_weights_copy = reversed_alternate_weights.astype('f')
 
-    # Tech Features: Improve scalability
-    tech_copy[0, 0] = 8
+    reversed_alternate_weights_copy_view = reversed_alternate_weights_copy.view()
 
-    # Convert weights to float32
-    weights_copy = weights.astype('f')
+    # Modify the reversed alternate weights
+    reversed_alternate_weights_copy_view[1] = 9.0
 
-    weights_copy_view = weights_copy.view()
+    # Convert last 3 features to float32 for compatibility
+    last_3_features_copy = last_3_features.astype('f')
 
-    # Weights: Increase importance of interpretability
-    weights_copy[3] = 10
+    last_3_features_copy_view = last_3_features_copy.view()
 
-    # Convert techs to float32
-    techs_copy = techs.astype('f')
+    # Modify the last 3 features
+    last_3_features_copy_view[0] = 5.0
 
-    techs_copy_view = techs_copy.view()
+    # Convert reverse order to float32 for compatibility
+    reverse_order_copy = reverse_order.astype('f')
 
-    # 2D Techs: Upgrade real-time processing for Tech 2
-    techs_copy[1, 2] = 6
+    reverse_order_copy_view = reverse_order_copy.view()
 
-    tech_group_labels_copy = tech_group_labels.copy()
+    # Modify the reverse order
+    reverse_order_copy_view[0] = 5.0
 
-    tech_group_labels_copy_view = tech_group_labels_copy.view()
+    # Convert last 2 techs to float32 for compatibility
+    last_2_techs_copy = last_2_techs.astype('f')
 
-    # Tech Group Labels: Downgrade Group 3's label from NextGen to Modern
-    tech_group_labels_copy[2, 2] = 1
+    last_2_techs_copy_view = last_2_techs_copy.view()
 
-    # Convert tech groups to float32
-    tech_groups_copy = tech_groups.astype('f')
+    # Modify the last 2 techs
+    last_2_techs_copy_view[0, 4] = 6.0
 
-    tech_groups_copy_view = tech_groups_copy.view()
+    # Convert last feature from each tech to float32 for compatibility
+    last_feature_copy = last_feature.astype('f')
 
-    #3D Tech Groups: Improve efficiency of Group 1, Tech 3
-    tech_groups_copy[0, 2, 4] = 8
+    last_feature_copy_view = last_feature_copy.view()
 
-    tech_locations_labels_copy = tech_locations_labels.copy()
+    # Modify the last feature
+    last_feature_copy_view[1] = 6.0
 
-    tech_locations_labels_copy_view = tech_locations_labels_copy.view()
+    # Convert reverse feature order of techs to float32 for compatibility
+    reverse_order_techs_copy = reverse_order_techs.astype('f')
 
-    # Tech Locations Labels: Downgrade Location 2's label from Edge to Cloud
-    tech_locations_labels_copy[1, 0, 1] = 0
+    reverse_order_techs_copy_view = reverse_order_techs_copy.view()
 
-    # Convert tech locations to float32
-    tech_locations_copy = tech_locations.astype('f')
+    # Modify the reverse order of techs
+    reverse_order_techs_copy_view[1, 0] = 6.0
 
-    tech_locations_copy_view = tech_locations_copy.view()
+    # Convert last group of techs to float32 for compatibility
+    last_group_copy = last_group.astype('f')
 
-    # 4D Tech Locations: Enhance scalability for Tech 1 in Location 2, Group 1
-    tech_locations_copy[1, 0, 0, 0] = 9
+    last_group_copy_view = last_group_copy.view()
 
-    # print(f"{bias_copy}\n{bias_copy_view}\n{techs_labels_copy}\n{techs_labels_copy_view}\n{tech_copy}\n{tech_copy_view}\n{weights_copy}\n{weights_copy_view}\n{techs_copy}\n{techs_copy_view}\n{tech_group_labels_copy}\n{tech_group_labels_copy_view}\n{tech_groups_copy}\n{tech_groups_copy_view}\n{tech_locations_labels_copy}\n{tech_locations_labels_copy_view}\n{tech_locations_copy}\n{tech_locations_copy_view}")
-    # print(f"{bias_copy.base}\n{bias_copy_view.base}\n{techs_labels_copy.base}\n{techs_labels_copy_view.base}\n{tech_copy.base}\n{tech_copy_view.base}\n{weights_copy.base}\n{weights_copy_view.base}\n{techs_copy.base}\n{techs_copy_view.base}\n{tech_group_labels_copy.base}\n{tech_group_labels_copy_view.base}\n{tech_groups_copy.base}\n{tech_groups_copy_view.base}\n{tech_locations_labels_copy.base}\n{tech_locations_labels_copy_view.base}\n{tech_locations_copy.base}\n{tech_locations_copy_view.base}")
+    # Modify the last group of techs
+    last_group_copy_view[2, 2] = 9.0
 
-    return bias_copy, bias_copy_view, techs_labels_copy, techs_labels_copy_view, tech_copy, tech_copy_view, weights_copy, weights_copy_view, techs_copy, techs_copy_view, tech_group_labels_copy, tech_group_labels_copy_view, tech_groups_copy, tech_groups_copy_view, tech_locations_labels_copy, tech_locations_labels_copy_view, tech_locations_copy, tech_locations_copy_view
+    # Convert last 2 features of each tech to float32 for compatibility
+    last_2_features_copy = last_2_features.astype('f')
 
-# bias, techs_labels, tech, weights, techs, tech_group_labels, tech_groups, tech_locations, tech_locations_labels= generate_data()
-# copy_view(bias, techs_labels, tech, weights, techs, tech_group_labels, tech_groups, tech_locations_labels, tech_locations)
+    last_2_features_copy_view = last_2_features_copy.view()
 
-def reshape_array(tech_labels_copy, weights_copy, tech_locations_copy):
-    # Reshape tech labels to a 2D array with 3 rows and 1 column
-    reshaped_labels = tech_labels_copy.reshape(-1, 1)
+    # Modify the last 2 features of each tech
+    last_2_features_copy_view[0, 1, 1] = 6.0
 
-    # Reshape weights to a 3D array with 1 row and 5 columns
-    reshaped_weights = weights_copy.reshape(1, 1, 5)
+    # Convert last feature of all techs to float32 for compatibility
+    last_feature_all_techs_copy = last_feature_all_techs.astype('f')
 
-    # Reshape tech locations to a 1D array
-    reshaped_locations = tech_locations_copy.reshape(-1)
+    last_feature_all_techs_copy_view = last_feature_all_techs_copy.view()
 
-    # print(f"{reshaped_labels.base}\n{reshaped_weights.base}\n{reshaped_locations.base}")
-    # print(f"{reshaped_labels.shape}\n{reshaped_weights.shape}\n{reshaped_locations.shape}")
-    # print(f"{tech_labels.shape}\n{weights.shape}")
-    # print(reshaped_locations)
+    # Modify the last feature of all techs
+    last_feature_all_techs_copy_view[0, 0, 1] = 6.0
 
-    return reshaped_labels, reshaped_weights, reshaped_locations
+    # Convert reversed techs to float32 for compatibility
+    reversed_techs_copy = reversed_techs.astype('f')
 
-# reshaped_labels, reshaped_weights, reshaped_locations = reshape_array(techs_labels, weights, tech_locations)
+    reversed_techs_copy_view = reversed_techs_copy.view()
+
+    # Modify the reversed techs
+    reversed_techs_copy_view[0, 0, 1, 4] = 6.0
+
+    return bias_copy, top_3_features_copy, reversed_alternate_weights_copy, last_3_features_copy, reverse_order_copy, last_2_techs_copy, last_feature_copy, reverse_order_techs_copy, last_group_copy, last_2_features_copy, last_feature_all_techs_copy, reversed_techs_copy
+
+def reshape_array(top_3_features_copy, last_3_features_copy, reverse_order_copy, reversed_alternate_weights_copy, last_feature_copy, last_2_techs_copy, reverse_order_techs_copy, last_group_copy):
+    """
+    Reshapes a set of arrays for further analysis and visualization.
+    Returns reshaped arrays.
+    """
+    # Reshape top 3 features to a 2D array with 3 rows and 1 column
+    reshaped_top_3_features = top_3_features_copy.reshape(-1, 1)
+
+    # Reshape last 3 features to a 2D array with 1 row and 3 columns
+    reshaped_last_3_features = last_3_features_copy.reshape(1, 3)
+
+    # Reshape reversed order of tech 1 features to a 2D array with 1 row and 3 columns
+    reshaped_reverse_order = reverse_order_copy.reshape(1, 5)
+
+    # Reshape reversed alternate weights to a 3D array with 1 depth, 3 rows, and 1 column
+    reshaped_reversed_alternate_weights = reversed_alternate_weights_copy.reshape(1, 3, 1)
+
+    # Reshape last feature to a 3D array with 3 depth 1 row and 1 column
+    reshaped_last_feature = last_feature_copy.reshape(3, 1, 1)
+
+    # Reshape last 2 techs into a 1D array
+    reshaped_last_2_techs = last_2_techs_copy.reshape(-1)
+
+    # Reshape reversed order of techs into a 1D array
+    reshaped_reverse_order_techs = reverse_order_techs_copy.reshape(-1)
+
+    # Reshape last group of techs into a 1D array
+    reshaped_last_group = last_group_copy.reshape(-1)
+
+    # print(f"{reshaped_top_3_features.base}\n{reshaped_last_3_features.base}\n{reshaped_reverse_order.base}\n{reshaped_reversed_alternate_weights.base}\n{reshaped_last_feature.base}\n{reshaped_last_2_techs.base}\n{reshaped_reverse_order_techs.base}\n{reshaped_last_group.base}")
+    # print(f"{reshaped_top_3_features.shape}\n{reshaped_last_3_features.shape}\n{reshaped_reverse_order.shape}\n{reshaped_reversed_alternate_weights.shape}\n{reshaped_last_feature.shape}\n{reshaped_last_2_techs.shape}\n{reshaped_reverse_order_techs.shape}\n{reshaped_last_group.shape}")
+    # print(f"{top_3_features_copy.shape}\n{last_3_features_copy.shape}\n{reverse_order_copy.shape}\n{reversed_alternate_weights_copy.shape}\n{last_feature_copy.shape}\n{last_2_techs_copy.shape}\n{reverse_order_techs_copy.shape}\n{last_group_copy.shape}")
+
+    return reshaped_top_3_features, reshaped_last_3_features, reshaped_reverse_order, reshaped_reversed_alternate_weights, reshaped_last_feature, reshaped_last_2_techs, reshaped_reverse_order_techs, reshaped_last_group
 
 def join(techs_copy, weights_copy, reshaped_labels, tech_group_labels, tech_group_labels_copy, tech, tech_copy):
     # Join the last feature and reversed alternate weights into a single 1D array
@@ -327,3 +377,9 @@ def search(tech_locations_copy):
     top_techs = tech_locations_copy[np.where(tech_locations_copy > 8)]
 
     return passing_features, failing_features, top_techs
+
+def sort(tech_locations_copy):
+    # Sort the tech locations
+    sorted_locations = np.sort(tech_locations_copy)
+    
+    return sorted_locations

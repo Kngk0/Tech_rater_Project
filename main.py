@@ -1,5 +1,5 @@
 from data_generator import generate_data
-from data_analyzer import slice_1D, slice_2D, slice_3D, slice_4D, copy_view, reshape_array, join, split, search
+from data_analyzer import slice_1D, slice_2D, slice_3D, slice_4D, copy_view, reshape_array, join, split, search, sort
 import numpy as np
 
 def main():
@@ -289,42 +289,52 @@ def main():
     print("\n")
 
     # Copy data
-    bias_copy, bias_copy_view, techs_labels_copy, techs_labels_copy_view, tech_copy, tech_copy_view, weights_copy, weights_copy_view, techs_copy, techs_copy_view, tech_group_labels_copy, tech_group_labels_copy_view, tech_groups_copy, tech_groups_copy_view, tech_locations_labels_copy, tech_locations_labels_copy_view, tech_locations_copy, tech_locations_copy_view = copy_view(bias, techs_labels, tech, weights, techs, tech_group_labels, tech_groups, tech_locations_labels, tech_locations)
+    bias_copy, top_3_features_copy, reversed_alternate_weights_copy, last_3_features_copy, reverse_order_copy, last_2_techs_copy, last_feature_copy, reverse_order_techs_copy, last_group_copy, last_2_features_copy, last_feature_all_techs_copy, reversed_techs_copy= copy_view(bias, top_3_features, reversed_alternate_weights, last_3_features, reverse_order, last_2_techs, last_feature, reverse_order_techs, last_group, last_2_features, last_feature_all_techs, reversed_techs)
     
     # Print copied modified data
     print("Copied Modified Data:")
     print("Bias Copy:", bias_copy)
-    print("Techs Labels Copy:", techs_labels_copy)
-    print("Tech Copy:", tech_copy)
-    print("Weights Copy:", weights_copy)
-    print("Techs Copy:", techs_copy)
+    print("Top 3 Features Copy:", top_3_features_copy)
+    print("Reversed Alternate Weights Copy:", reversed_alternate_weights_copy)
+    print("Last 3 Features Copy:", last_3_features_copy)
+    print("Reversed Order Copy:", reverse_order_copy)
+    print("Last 2 Techs Copy:", last_2_techs_copy)
 
     print("Iterating through Techs Copy with step size 2 (columns):")
-    for x in np.nditer(techs_copy[:, ::2]):
+    for x in np.nditer(last_2_techs_copy[:, ::2]):
         print(x)
     print("\n")
 
-    print("Tech Group Labels Copy:", tech_group_labels_copy)
-    print("Tech Groups Copy:", tech_groups_copy)
-    print("Tech Locations Labels Copy:", tech_locations_labels_copy)
-    print("Tech Locations Copy:", tech_locations_copy)
+    print("Last Feature Copy:", last_feature_copy)
+    print("Reversed Order Techs Copy:", reverse_order_techs_copy)
+    print("Last Group Copy:", last_group_copy)
+    print("Last 2 Features Copy:", last_2_features_copy)
+    print("Last Feature All Techs Copy:", last_feature_all_techs_copy)
+    print("Reversed Techs Copy:", reversed_techs_copy)
     print("\n")
 
-    reshaped_labels, reshaped_weights, reshaped_locations = reshape_array(techs_labels, weights, tech_locations)
+    reshaped_top_3_features, reshaped_last_3_features, reshaped_reverse_order, reshaped_reversed_alternate_weights, reshaped_last_feature, reshaped_last_2_techs, reshaped_reverse_order_techs, reshaped_last_group = reshape_array(top_3_features_copy, last_3_features_copy, reverse_order_copy, reversed_alternate_weights_copy, last_feature_copy, last_2_techs_copy, reverse_order_techs_copy, last_group_copy)
     # Print reshaped data
     print("Reshaped Data:")
-    print("Reshaped Techs Labels:", reshaped_labels)
-    print("Reshaped Weights:", reshaped_weights)
-    print("Reshaped Tech Locations:", reshaped_locations)
+    print("Reshaped Top 3 features:", reshaped_top_3_features)
+    print("Reshaped Last 3 features of Tech 1:", reshaped_last_3_features)
+    print("Reshaped reversed order of features from Tech 1:", reshaped_reverse_order)
 
-    print("\nIndex and value pairs from reshaped tech locations:")
-    for idx, x in np.ndenumerate(reshaped_locations):
+    print("\nIndex and value pairs from reshaped reversed order:")
+    for idx, x in np.ndenumerate(reshaped_reverse_order):
         print(f"Index: {idx}, Value: {x}")
 
-    print("\nIndex and value pairs from rehaped labels:")
-    for idx, x in np.ndenumerate(reshaped_labels):
+    print("\nIndex and value pairs from reshaped top 3 features:")
+    for idx, x in np.ndenumerate(reshaped_top_3_features):
         print(f"Index: {idx}, Value: {x}")
 
+    print("Reshaped Reversed Alternate Weights:", reshaped_reversed_alternate_weights)
+    print("Reshaped Last Feature from each Tech:", reshaped_last_feature)
+    print("Reshaped Last 2 Techs in group 1:", reshaped_last_2_techs)
+    print("Reshaped Reversed Order of Features from Techs in group 1:", reshaped_reverse_order_techs)
+    print("Reshaped Last Group of Techs:", reshaped_last_group)
+    print("\n")
+'''
     # Join data
     efficiency_vs_weights, techs_with_labels, top_features_and_weights, complexity_labels, reversed_features_and_weights, original_vs_modified = join(techs_copy, weights_copy, reshaped_labels, tech_group_labels, tech_group_labels_copy, tech, tech_copy)
 
@@ -372,4 +382,9 @@ def main():
     print("Top Techs in all Locations:", top_techs)
     print("\n")
 
+    # Sort data
+    sorted_locations = sort(tech_locations_copy)
+    print("Sorted Tech Locations:")
+    print(sorted_locations)
+'''
 main()
