@@ -7,7 +7,7 @@ def main():
     bias, techs_labels, tech, weights, techs, tech_group_labels, tech_groups, tech_locations, tech_locations_labels= generate_data()
 
     # Slice 1D data
-    basic, intermediate, advanced, w_scalability, w_automation, w_real_time_processing, w_interpretability, w_efficiency, w_combined_score, top_3_features, reversed_alternate_weights = slice_1D(techs_labels, weights)
+    basic, intermediate, advanced, w_scalability, w_automation, w_real_time_processing, w_interpretability, w_efficiency, w_combined_score, core_weights, quality_weights = slice_1D(techs_labels, weights)
 
     # Print 1D data
     print(f"Tech Labels\nBasic: {basic}, Intermediate: {intermediate}, Advanced: {advanced}")
@@ -31,12 +31,12 @@ def main():
     print("Efficiency Weight:", w_efficiency)
     print("Combined Score Weight:", w_combined_score)
     print("\n")
-    print(f"Top 3 Features: {top_3_features}")
-    print("Reversed Alternate Weights:", reversed_alternate_weights)
+    print("Core Weights:", core_weights)
+    print("Quality Weights:", quality_weights)
     print("\n")
 
     # Slice 2D data
-    scalability, automation, real_time_processing, interpretability, efficiency, combined_score, last_3_features, reverse_order, tech2, scalability2, automation2, real_time_processing2, interpretability2, efficiency2, combined_score2, tech3, scalability3, automation3, real_time_processing3, interpretability3, efficiency3, combined_score3, last_2_techs, last_feature, reverse_order_techs, legacy, modern, nextgen = slice_2D(tech, techs, tech_group_labels)
+    scalability, automation, real_time_processing, interpretability, efficiency, combined_score, performance_features, tech2, scalability2, automation2, real_time_processing2, interpretability2, efficiency2, combined_score2, tech3, scalability3, automation3, real_time_processing3, interpretability3, efficiency3, combined_score3, core_features_scores, legacy, modern, nextgen = slice_2D(tech, techs, tech_group_labels)
 
     # Print 2D data
     print(f"Tech 1 Features: {tech}")
@@ -52,8 +52,8 @@ def main():
         for y in x:
             print(y)
     print("\n")
-    print(f"Last 3 Features: {last_3_features}")
-    print("Reversed Order:", reverse_order)
+    #print("Intelligent Features (Tech 1):", intelligent_features_tech)
+    print(f"Performance Features: {performance_features}")
     print("\n")
 
     print(f"Tech 2 Features: {tech2}")
@@ -78,9 +78,9 @@ def main():
         for y in x:
             print(y)
     print("\n")
-    print(f"Last 2 Techs:\n {last_2_techs}")
-    print("Last feature from each tech:", last_feature)
-    print(f"Reverse feature order per tech:\n {reverse_order_techs}")
+    #print("Efficiency Scores:", efficiency_scores)
+    #print("Scalability Scores:", scalability_scores)
+    print(f"Core Features Scores:\n {core_features_scores}")
     print("\n")
 
     print(f"Tech Group Labels\nLegacy: {legacy}, Modern: {modern}, NextGen: {nextgen}")
@@ -97,7 +97,7 @@ def main():
     print("\n")
 
     # Slice 3D data
-    tech_group2, tech2_1, scalability2_1, automation2_1, real_time_processing2_1, interpretability2_1, efficiency2_1, combined_score2_1, tech2_2, scalability2_2, automation2_2, real_time_processing2_2, interpretability2_2, efficiency2_2, combined_score2_2, tech2_3, scalability2_3, automation2_3, real_time_processing2_3, interpretability2_3, efficiency2_3, combined_score2_3, tech_group3, tech3_1, scalability3_1, automation3_1, real_time_processing3_1, interpretability3_1, efficiency3_1, combined_score3_1, tech3_2, scalability3_2, automation3_2, real_time_processing3_2, interpretability3_2, efficiency3_2, combined_score3_2, tech3_3, scalability3_3, automation3_3, real_time_processing3_3, interpretability3_3, efficiency3_3, combined_score3_3, last_group, last_2_features, cloud, edge, on_premises = slice_3D(tech_groups, tech_locations_labels)
+    tech_group2, tech2_1, scalability2_1, automation2_1, real_time_processing2_1, interpretability2_1, efficiency2_1, combined_score2_1, tech2_2, scalability2_2, automation2_2, real_time_processing2_2, interpretability2_2, efficiency2_2, combined_score2_2, tech2_3, scalability2_3, automation2_3, real_time_processing2_3, interpretability2_3, efficiency2_3, combined_score2_3, tech_group3, tech3_1, scalability3_1, automation3_1, real_time_processing3_1, interpretability3_1, efficiency3_1, combined_score3_1, tech3_2, scalability3_2, automation3_2, real_time_processing3_2, interpretability3_2, efficiency3_2, combined_score3_2, tech3_3, scalability3_3, automation3_3, real_time_processing3_3, interpretability3_3, efficiency3_3, combined_score3_3, group_1_automation, cloud, edge, on_premises = slice_3D(tech_groups, tech_locations_labels)
 
     # Print 3D data
     print(f"Tech Group 2 Features:\n {tech_group2}")
@@ -150,8 +150,8 @@ def main():
     print("Efficiency:", efficiency3_3)
     print("Combined Score:", combined_score3_3)
     print("\n")
-    print(f"Last Group Features:\n {last_group}")
-    print(f"Last 2 Features of each tech:\n {last_2_features}")
+    print(f"Group 1 Tech Automation scores:\n {group_1_automation}")
+    #print(f"Group's Scalability Features of each tech:\n {groups_scalability}")
     print("\n")
 
     print("Iterating over tech groups:")
@@ -200,7 +200,7 @@ def main():
 
     
     # Slice 4D data
-    tech_location2, tech_location2_g1, tech_location2_g1_1, scalability2_g1_1, automation2_g1_1, real_time_processing2_g1_1, interpretability2_g1_1, efficiency2_g1_1, combined_score2_g1_1, tech_location2_g1_2, scalability2_g1_2, automation2_g1_2, real_time_processing2_g1_2, interpretability2_g1_2, efficiency2_g1_2, combined_score2_g1_2, tech_location2_g1_3, scalability2_g1_3, automation2_g1_3, real_time_processing2_g1_3, interpretability2_g1_3, efficiency2_g1_3, combined_score2_g1_3, tech_location2_g2, tech_location2_g2_1, scalability2_g2_1, automation2_g2_1, real_time_processing2_g2_1, interpretability2_g2_1, efficiency2_g2_1, combined_score2_g2_1, tech_location2_g2_2, scalability2_g2_2, automation2_g2_2, real_time_processing2_g2_2, interpretability2_g2_2, efficiency2_g2_2, combined_score2_g2_2, tech_location2_g2_3, scalability2_g2_3, automation2_g2_3, real_time_processing2_g2_3, interpretability2_g2_3, efficiency2_g2_3, combined_score2_g2_3, tech_location2_g3, tech_location2_g3_1, scalability2_g3_1, automation2_g3_1, real_time_processing2_g3_1, interpretability2_g3_1, efficiency2_g3_1, combined_score2_g3_1, tech_location2_g3_2, scalability2_g3_2, automation2_g3_2, real_time_processing2_g3_2, interpretability2_g3_2, efficiency2_g3_2, combined_score2_g3_2, tech_location2_g3_3, scalability2_g3_3, automation2_g3_3, real_time_processing2_g3_3, interpretability2_g3_3, efficiency2_g3_3, combined_score2_g3_3, last_feature_all_techs, reversed_techs = slice_4D(tech_locations)
+    tech_location2, tech_location2_g1, tech_location2_g1_1, scalability2_g1_1, automation2_g1_1, real_time_processing2_g1_1, interpretability2_g1_1, efficiency2_g1_1, combined_score2_g1_1, tech_location2_g1_2, scalability2_g1_2, automation2_g1_2, real_time_processing2_g1_2, interpretability2_g1_2, efficiency2_g1_2, combined_score2_g1_2, tech_location2_g1_3, scalability2_g1_3, automation2_g1_3, real_time_processing2_g1_3, interpretability2_g1_3, efficiency2_g1_3, combined_score2_g1_3, tech_location2_g2, tech_location2_g2_1, scalability2_g2_1, automation2_g2_1, real_time_processing2_g2_1, interpretability2_g2_1, efficiency2_g2_1, combined_score2_g2_1, tech_location2_g2_2, scalability2_g2_2, automation2_g2_2, real_time_processing2_g2_2, interpretability2_g2_2, efficiency2_g2_2, combined_score2_g2_2, tech_location2_g2_3, scalability2_g2_3, automation2_g2_3, real_time_processing2_g2_3, interpretability2_g2_3, efficiency2_g2_3, combined_score2_g2_3, tech_location2_g3, tech_location2_g3_1, scalability2_g3_1, automation2_g3_1, real_time_processing2_g3_1, interpretability2_g3_1, efficiency2_g3_1, combined_score2_g3_1, tech_location2_g3_2, scalability2_g3_2, automation2_g3_2, real_time_processing2_g3_2, interpretability2_g3_2, efficiency2_g3_2, combined_score2_g3_2, tech_location2_g3_3, scalability2_g3_3, automation2_g3_3, real_time_processing2_g3_3, interpretability2_g3_3, efficiency2_g3_3, combined_score2_g3_3, efficiency_feature_all_techs = slice_4D(tech_locations)
 
     # Print 4D data
     print(f"Tech Location 2 Features:\n {tech_location2}")
@@ -279,8 +279,10 @@ def main():
     print("Efficiency:", efficiency2_g3_3)
     print("Combined Score:", combined_score2_g3_3)
     print("\n")
-    print(f"Last feature from all techs, groups, locations:\n {last_feature_all_techs}")
-    print(f"Reverse tech order in every group and location:\n {reversed_techs}")
+    #print(f"Location 2 Group 3 Tech 1 Features:", location2_group3_tech1_features)
+    #print("Group 2 Scalability by Location:", group2_scalability_by_location)
+    print(f"Efficiency feature from all techs, groups, locations:\n {efficiency_feature_all_techs}")
+    #print(f"Real-time Processing feature from all techs, groups, locations:\n {realtime_scores_loc1}")
     print("\n")
 
     print("Iterating over all values in Tech Locations as string types:")
@@ -289,64 +291,70 @@ def main():
     print("\n")
 
     # Copy data
-    bias_copy, top_3_features_copy, reversed_alternate_weights_copy, last_3_features_copy, reverse_order_copy, last_2_techs_copy, last_feature_copy, reverse_order_techs_copy, last_group_copy, last_2_features_copy, last_feature_all_techs_copy, reversed_techs_copy= copy_view(bias, top_3_features, reversed_alternate_weights, last_3_features, reverse_order, last_2_techs, last_feature, reverse_order_techs, last_group, last_2_features, last_feature_all_techs, reversed_techs)
-    
-    # Print copied modified data
-    print("Copied Modified Data:")
-    print("Bias Copy:", bias_copy)
-    print("Top 3 Features Copy:", top_3_features_copy)
-    print("Reversed Alternate Weights Copy:", reversed_alternate_weights_copy)
-    print("Last 3 Features Copy:", last_3_features_copy)
-    print("Reversed Order Copy:", reverse_order_copy)
-    print("Last 2 Techs Copy:", last_2_techs_copy)
+    bias_copy, bias_copy_view, sorted_feature_weights_copy, sorted_feature_weights_copy_view, performance_features_copy, performance_features_copy_view, core_feature_scores_copy, core_feature_scores_copy_view, group_1_automation_copy, group_1_automation_copy_view, efficiency_feature_all_techs_copy, efficiency_feature_all_techs_copy_view = copy_view(bias, sorted_feature_weights, performance_features, core_features_scores, group_1_automation, efficiency_feature_all_techs)
 
-    print("Iterating through Techs Copy with step size 2 (columns):")
-    for x in np.nditer(last_2_techs_copy[:, ::2]):
+    # Print copied modified data
+    print("Modified and Copied Data:")
+    print("Modified Bias:", bias)
+    print("Bias Copy:", bias_copy)
+    print("Bias Copy View:", bias_copy_view)
+    print("\n")
+
+    print("Modified Sorted Feature Weights:", sorted_feature_weights)
+    print("Sorted Feature Weights Copy:", sorted_feature_weights_copy)
+    print("Sorted Feature Weights Copy View:", sorted_feature_weights_copy_view)
+    print("\n")
+
+    print("Modified Last 3 Features:", performance_features)
+    print("Last 3 Features Copy:", performance_features_copy)
+    print("Last 3 Features Copy View:", performance_features_copy_view)
+    print("\n")
+
+    print("Modified Core Features Scores:", core_features_scores)
+    print("Core Features Scores Copy:", core_feature_scores_copy)
+    print("Core Features Scores Copy View:", core_feature_scores_copy_view)
+    print("\n")
+
+    print("Iterating through Core Techs Copy with step size 2 (columns):")
+    for x in np.nditer(core_feature_scores_copy[:, ::2]):
         print(x)
     print("\n")
 
-    print("Last Feature Copy:", last_feature_copy)
-    print("Reversed Order Techs Copy:", reverse_order_techs_copy)
-    print("Last Group Copy:", last_group_copy)
-    print("Last 2 Features Copy:", last_2_features_copy)
-    print("Last Feature All Techs Copy:", last_feature_all_techs_copy)
-    print("Reversed Techs Copy:", reversed_techs_copy)
+    print("Modified group 1's Automation Features:", group_1_automation)
+    print("group 1's Automation Features Copy:", group_1_automation_copy)
+    print("group 1's Automation Features Copy View:", group_1_automation_copy_view)
     print("\n")
 
-    reshaped_top_3_features, reshaped_last_3_features, reshaped_reverse_order, reshaped_reversed_alternate_weights, reshaped_last_feature, reshaped_last_2_techs, reshaped_reverse_order_techs, reshaped_last_group = reshape_array(top_3_features_copy, last_3_features_copy, reverse_order_copy, reversed_alternate_weights_copy, last_feature_copy, last_2_techs_copy, reverse_order_techs_copy, last_group_copy)
+    print("Modified Efficiency feature from all techs, groups, locations:", efficiency_feature_all_techs)
+    print("Efficiency feature from all techs, groups, locations Copy:", efficiency_feature_all_techs_copy)
+    print("Efficiency feature from all techs, groups, locations Copy View:", efficiency_feature_all_techs_copy_view)
+    print("\n")
+
+    reshaped_sorted_feature_weights, reshaped_performance_features, reshaped_core_feature_scores, reshaped_group_1_automation, reshaped_efficiency_feature_all_techs = reshape_array(sorted_feature_weights_copy, performance_features_copy, core_feature_scores_copy, group_1_automation_copy, efficiency_feature_all_techs_copy)
+
     # Print reshaped data
     print("Reshaped Data:")
-    print("Reshaped Top 3 features:", reshaped_top_3_features)
-    print("Reshaped Last 3 features of Tech 1:", reshaped_last_3_features)
-    print("Reshaped reversed order of features from Tech 1:", reshaped_reverse_order)
+    print("Reshaped Sorted Feature Weights:", reshaped_sorted_feature_weights)
 
-    print("\nIndex and value pairs from reshaped reversed order:")
-    for idx, x in np.ndenumerate(reshaped_reverse_order):
+    print("\nIndex and value pairs from reshaped feature importance:")
+    for idx, x in np.ndenumerate(reshaped_sorted_feature_weights):
         print(f"Index: {idx}, Value: {x}")
 
-    print("\nIndex and value pairs from reshaped top 3 features:")
-    for idx, x in np.ndenumerate(reshaped_top_3_features):
+    print("\nReshaped scalability, real-time processing, efficiency features of one tech", reshaped_performance_features)
+
+    print("\nIndex and value pairs from features:")
+    for idx, x in np.ndenumerate(reshaped_performance_features):
         print(f"Index: {idx}, Value: {x}")
 
-    print("Reshaped Reversed Alternate Weights:", reshaped_reversed_alternate_weights)
-    print("Reshaped Last Feature from each Tech:", reshaped_last_feature)
-    print("Reshaped Last 2 Techs in group 1:", reshaped_last_2_techs)
-    print("Reshaped Reversed Order of Features from Techs in group 1:", reshaped_reverse_order_techs)
-    print("Reshaped Last Group of Techs:", reshaped_last_group)
+    print('\n')
+    print("Reshaped automation and interpretability scores:", reshaped_core_feature_scores)
+    print("Reshaped Group 1's Automation:", reshaped_group_1_automation)
+    print("Reshaped Efficiency Feature from All Techs:", reshaped_efficiency_feature_all_techs)
     print("\n")
-'''
+
     # Join data
-    efficiency_vs_weights, techs_with_labels, top_features_and_weights, complexity_labels, reversed_features_and_weights, original_vs_modified = join(techs_copy, weights_copy, reshaped_labels, tech_group_labels, tech_group_labels_copy, tech, tech_copy)
 
-    # Print joined data
-    print("Joined Data:")
-    print("Efficiency vs Weights reversed:", efficiency_vs_weights)
-    print("Techs with Labels:", techs_with_labels)
-    print("Top Features and Weights:", top_features_and_weights)
-    print("Original and Modified Complexity Labels:", complexity_labels)
-    print("Reversed Features and Weights:", reversed_features_and_weights)
-    print("Original vs Modified Tech Features:", original_vs_modified)
-
+'''
     # Split data
     print("\nSplitting Data for Feature Analysis:")
     weight_batches, tech_batches, tech_groups_batches, tech_locations_batches = split(weights_copy, techs_copy, tech_groups_copy, tech_locations_copy)
