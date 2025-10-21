@@ -34,9 +34,7 @@ def slice_2D(tech, techs, tech_group_labels):
     interpretability = tech[0, -2]
     efficiency = tech[0, -1]
     combined_score = scalability + automation + real_time_processing + interpretability + efficiency
-    #intelligent_features_tech = tech[0, 1:4]
-    performance_features = tech[0, ::2]
-    tech[0, 1:4:2]
+    performance_features = tech[0, ::-2]
 
     # Feature values for the second and third techs
     tech2 = techs[1]
@@ -53,16 +51,14 @@ def slice_2D(tech, techs, tech_group_labels):
     interpretability3 = techs[2, 3]
     efficiency3 = techs[2, 4]
     combined_score3 = scalability3 + automation3 + real_time_processing3 + interpretability3 + efficiency3
-    #efficiency_scores= techs[:, -1]
-    #scalability_scores = techs[:, 0]
-    core_features_scores = techs[:, 1::2]
+    automation_features = techs[:, -4]
 
     # Labels for the tech groups
     legacy = tech_group_labels[0, 0]
     modern = tech_group_labels[0, 1]
     nextgen = tech_group_labels[0, 2]
 
-    return scalability, automation, real_time_processing, interpretability, efficiency, combined_score, performance_features, tech2, scalability2, automation2, real_time_processing2, interpretability2, efficiency2, combined_score2, tech3, scalability3, automation3, real_time_processing3, interpretability3, efficiency3, combined_score3, core_features_scores, legacy, modern, nextgen
+    return scalability, automation, real_time_processing, interpretability, efficiency, combined_score, performance_features, tech2, scalability2, automation2, real_time_processing2, interpretability2, efficiency2, combined_score2, tech3, scalability3, automation3, real_time_processing3, interpretability3, efficiency3, combined_score3, automation_features, legacy, modern, nextgen
 
 def slice_3D(tech_groups, tech_locations_labels):
     """
@@ -113,15 +109,14 @@ def slice_3D(tech_groups, tech_locations_labels):
     interpretability3_3 = tech_groups[2, 2, 3]
     efficiency3_3 = tech_groups[2, 2, 4]
     combined_score3_3 = scalability3_3 + automation3_3 + real_time_processing3_3 + interpretability3_3 + efficiency3_3
-    group_1_automation = tech_groups[0, :, 1]
-    #groups_scalability = tech_groups[:, :, 0]
+    interpretability_features = tech_groups[:, :, -2]
 
     # Labels for the tech locations
     cloud = tech_locations_labels[0, 0, 0]
     edge = tech_locations_labels[0, 1, 1]
     on_premises = tech_locations_labels[0, 2, 2]
 
-    return tech_group2, tech2_1, scalability2_1, automation2_1, real_time_processing2_1, interpretability2_1, efficiency2_1, combined_score2_1, tech2_2, scalability2_2, automation2_2, real_time_processing2_2, interpretability2_2, efficiency2_2, combined_score2_2, tech2_3, scalability2_3, automation2_3, real_time_processing2_3, interpretability2_3, efficiency2_3, combined_score2_3, tech_group3, tech3_1, scalability3_1, automation3_1, real_time_processing3_1, interpretability3_1, efficiency3_1, combined_score3_1, tech3_2, scalability3_2, automation3_2, real_time_processing3_2, interpretability3_2, efficiency3_2, combined_score3_2, tech3_3, scalability3_3, automation3_3, real_time_processing3_3, interpretability3_3, efficiency3_3, combined_score3_3, group_1_automation, cloud, edge, on_premises
+    return tech_group2, tech2_1, scalability2_1, automation2_1, real_time_processing2_1, interpretability2_1, efficiency2_1, combined_score2_1, tech2_2, scalability2_2, automation2_2, real_time_processing2_2, interpretability2_2, efficiency2_2, combined_score2_2, tech2_3, scalability2_3, automation2_3, real_time_processing2_3, interpretability2_3, efficiency2_3, combined_score2_3, tech_group3, tech3_1, scalability3_1, automation3_1, real_time_processing3_1, interpretability3_1, efficiency3_1, combined_score3_1, tech3_2, scalability3_2, automation3_2, real_time_processing3_2, interpretability3_2, efficiency3_2, combined_score3_2, tech3_3, scalability3_3, automation3_3, real_time_processing3_3, interpretability3_3, efficiency3_3, combined_score3_3, interpretability_features, cloud, edge, on_premises
 
 def slice_4D(tech_locations):
     """
@@ -194,113 +189,178 @@ def slice_4D(tech_locations):
     interpretability2_g3_3 = tech_locations[1, 2, 2, 3]
     efficiency2_g3_3 = tech_locations[1, 2, 2, 4]
     combined_score2_g3_3 = scalability2_g3_3 + automation2_g3_3 + real_time_processing2_g3_3 + interpretability2_g3_3 + efficiency2_g3_3
-    #location2_group3_tech1_features = tech_locations[1, 2, 0]
-    #group2_scalability_by_location = tech_locations[:, 1, :, 0]
     efficiency_feature_all_techs = tech_locations[:, :, :, -1]
-    #realtime_scores_loc1 = tech_locations[0, :, :, 2]
+    rt_processing_feature_all_techs = tech_locations[:, :, :, 2]
 
-    return tech_location2, tech_location2_g1, tech_location2_g1_1, scalability2_g1_1, automation2_g1_1, real_time_processing2_g1_1, interpretability2_g1_1, efficiency2_g1_1, combined_score2_g1_1, tech_location2_g1_2, scalability2_g1_2, automation2_g1_2, real_time_processing2_g1_2, interpretability2_g1_2, efficiency2_g1_2, combined_score2_g1_2, tech_location2_g1_3, scalability2_g1_3, automation2_g1_3, real_time_processing2_g1_3, interpretability2_g1_3, efficiency2_g1_3, combined_score2_g1_3, tech_location2_g2, tech_location2_g2_1, scalability2_g2_1, automation2_g2_1, real_time_processing2_g2_1, interpretability2_g2_1, efficiency2_g2_1, combined_score2_g2_1, tech_location2_g2_2, scalability2_g2_2, automation2_g2_2, real_time_processing2_g2_2, interpretability2_g2_2, efficiency2_g2_2, combined_score2_g2_2, tech_location2_g2_3, scalability2_g2_3, automation2_g2_3, real_time_processing2_g2_3, interpretability2_g2_3, efficiency2_g2_3, combined_score2_g2_3, tech_location2_g3, tech_location2_g3_1, scalability2_g3_1, automation2_g3_1, real_time_processing2_g3_1, interpretability2_g3_1, efficiency2_g3_1, combined_score2_g3_1, tech_location2_g3_2, scalability2_g3_2, automation2_g3_2, real_time_processing2_g3_2, interpretability2_g3_2, efficiency2_g3_2, combined_score2_g3_2, tech_location2_g3_3, scalability2_g3_3, automation2_g3_3, real_time_processing2_g3_3, interpretability2_g3_3, efficiency2_g3_3, combined_score2_g3_3, efficiency_feature_all_techs
+    return tech_location2, tech_location2_g1, tech_location2_g1_1, scalability2_g1_1, automation2_g1_1, real_time_processing2_g1_1, interpretability2_g1_1, efficiency2_g1_1, combined_score2_g1_1, tech_location2_g1_2, scalability2_g1_2, automation2_g1_2, real_time_processing2_g1_2, interpretability2_g1_2, efficiency2_g1_2, combined_score2_g1_2, tech_location2_g1_3, scalability2_g1_3, automation2_g1_3, real_time_processing2_g1_3, interpretability2_g1_3, efficiency2_g1_3, combined_score2_g1_3, tech_location2_g2, tech_location2_g2_1, scalability2_g2_1, automation2_g2_1, real_time_processing2_g2_1, interpretability2_g2_1, efficiency2_g2_1, combined_score2_g2_1, tech_location2_g2_2, scalability2_g2_2, automation2_g2_2, real_time_processing2_g2_2, interpretability2_g2_2, efficiency2_g2_2, combined_score2_g2_2, tech_location2_g2_3, scalability2_g2_3, automation2_g2_3, real_time_processing2_g2_3, interpretability2_g2_3, efficiency2_g2_3, combined_score2_g2_3, tech_location2_g3, tech_location2_g3_1, scalability2_g3_1, automation2_g3_1, real_time_processing2_g3_1, interpretability2_g3_1, efficiency2_g3_1, combined_score2_g3_1, tech_location2_g3_2, scalability2_g3_2, automation2_g3_2, real_time_processing2_g3_2, interpretability2_g3_2, efficiency2_g3_2, combined_score2_g3_2, tech_location2_g3_3, scalability2_g3_3, automation2_g3_3, real_time_processing2_g3_3, interpretability2_g3_3, efficiency2_g3_3, combined_score2_g3_3, efficiency_feature_all_techs, rt_processing_feature_all_techs
 
-def copy_view(bias, sorted_feature_weights, performance_features, core_feature_scores, group_1_automation, efficiency_feature_all_techs):
+def copy_view(bias, performance_features, automation_features, interpretability_features, efficiency_feature_all_techs, rt_processing_feature_all_techs):
     # Create a copy of the original arrays to avoid modifying the original data
 
     # Convert bias to float32 for compatibility
     bias_copy = bias.astype('f')
+    bias_view = bias.view()
     # Bias: Shift opinion from Positive to Negative
-    bias[...] = -1.0
-    bias_copy_view = bias_copy.view()
-    bias_copy[...] = 0.01
+    bias_copy[...] = -1.0
 
-    # Convert sorted feature weights to float32 for compatibility
-    sorted_feature_weights_copy = sorted_feature_weights.astype('f')
-    # Modify the sorted feature weights
-    sorted_feature_weights[1] = 9.0
-    sorted_feature_weights_copy_view = sorted_feature_weights_copy.view()
-    # Modify the sorted feature weights
-    sorted_feature_weights_copy[1] = 3.0
-
-    # Convert last 3 features to float32 for compatibility
+    # Convert efficiency, real-time processing, and scalability features to float32 for compatibility
     performance_features_copy = performance_features.astype('f')
-    performance_features[0] = 4.0
-    performance_features_copy_view = performance_features_copy.view()
-    # Modify the last 3 features
-    performance_features_copy[0] = 2.0
+    performance_features_view = performance_features.view()
+    # Modify the efficiency features
+    performance_features_copy[0] = 8.5
 
-    # Convert core feature scores to float32 for compatibility
-    core_feature_scores_copy = core_feature_scores.astype('f')
-    core_feature_scores[1, 1] = 9.0
-    core_feature_scores_copy_view = core_feature_scores_copy.view()
-    # Modify the core feature scores
-    core_feature_scores_copy[1, 1] = 3.0
+    # Convert automation features to float32 for compatibility
+    automation_features_copy = automation_features.astype('f')
+    automation_features_view = automation_features.view()
+    # Modify the quality feature scores
+    automation_features_copy[1] = 7.5
 
-    # Convert groups scalability to float32 for compatibility
-    group_1_automation_copy = group_1_automation.astype('f')
-    group_1_automation[1] = 6.0
-    group_1_automation_copy_view = group_1_automation_copy.view()
-    group_1_automation_copy[1] = 3.0
+    # Convert interpretability features per tech group to float32 for compatibility
+    interpretability_features_copy = interpretability_features.astype('f')
+    interpretability_features_view = interpretability_features.view()
+    interpretability_features_copy[0, 1] = 8.5
 
-    # Convert last feature of all techs to float32 for compatibility
-    efficiency_feature_all_techs_copy = efficiency_feature_all_techs.astype('f')
-    # Modify the last feature of all techs
-    efficiency_feature_all_techs[0, 0, 1] = 10.0
-    efficiency_feature_all_techs_copy_view = efficiency_feature_all_techs_copy.view()
-    efficiency_feature_all_techs_copy[0, 0, 1] = 7.0
+    # Convert efficiency feature of all techs to float32 for compatibility
+    efficiency_feature_all_techs_copy = efficiency_feature_all_techs.copy()
+    efficiency_feature_all_techs_view = efficiency_feature_all_techs.view()
+    efficiency_feature_all_techs_copy[0, 0, 1] = 7
 
-    return bias_copy, bias_copy_view, sorted_feature_weights_copy, sorted_feature_weights_copy_view, performance_features_copy, performance_features_copy_view, core_feature_scores_copy, core_feature_scores_copy_view, group_1_automation_copy, group_1_automation_copy_view, efficiency_feature_all_techs_copy, efficiency_feature_all_techs_copy_view
+    # Convert real-time processing feature of all techs to float32 for compatibility
+    rt_processing_feature_all_techs_copy = rt_processing_feature_all_techs.copy()
+    rt_processing_feature_all_techs_view = rt_processing_feature_all_techs.view()
+    rt_processing_feature_all_techs_copy[0, 0, 1] = 6.5
 
-def reshape_array(sorted_feature_weights_copy, performance_features_copy, core_feature_scores_copy, group_1_automation_copy, efficiency_feature_all_techs_copy):
+    return bias_copy, bias_view, performance_features_copy, performance_features_view, automation_features_copy, automation_features_view, interpretability_features_copy, interpretability_features_view, efficiency_feature_all_techs_copy, efficiency_feature_all_techs_view, rt_processing_feature_all_techs_copy, rt_processing_feature_all_techs_view
+
+def reshape_array(performance_features, performance_features_copy, automation_features, automation_features_copy, interpretability_features, interpretability_features_copy, efficiency_feature_all_techs,efficiency_feature_all_techs_copy, rt_processing_feature_all_techs, rt_processing_feature_all_techs_copy):
     """
     Reshapes a set of arrays for further analysis and visualization.
     Returns reshaped arrays.
     """
-    # Reshape sorted feature weights to 5 rows and 1 column
-    reshaped_sorted_feature_weights = sorted_feature_weights_copy.reshape(5, 1)
+    # Reshape performance features and its copy to 3 row and 1 column
+    performance_features_reshaped = performance_features.reshape(-1, 1)
+    performance_features_copy_reshaped = performance_features_copy.reshape(-1, 1)
 
-    # Reshape performance features to 1 row and 3 columns
-    reshaped_performance_features = performance_features_copy.reshape(1, -1)
+    # Reshape automation feature scores to 1 layer 3 row and 1 column
+    automation_features_reshaped = automation_features.reshape(1, 3, -1)
+    automation_features_copy_reshaped = automation_features_copy.reshape(1, 3, -1)
 
-    # Reshape core feature scores to 1 row and 6 columns
-    reshaped_core_feature_scores = core_feature_scores_copy.reshape(-1)
+    # Reshape groups interpretability features to 3 layers 3 techs and 1 column
+    interpretability_features_reshaped = interpretability_features.reshape(3, 3, -1)
+    interpretability_features_copy_reshaped = interpretability_features_copy.reshape(3, 3, -1)
 
-    # Reshape group 1's automation to 3 row and 1 column
-    reshaped_group_1_automation = group_1_automation_copy.reshape(3, 1)
+    # Reshape efficiency feature from all group to 18 columns
+    efficiency_feature_all_techs_reshaped = efficiency_feature_all_techs.reshape(-1)
+    efficiency_feature_all_techs_copy_reshaped = efficiency_feature_all_techs_copy.reshape(-1)
 
-    # Reshape efficiency feature from all techs to 2 row and 9 columns
-    reshaped_efficiency_feature_all_techs = efficiency_feature_all_techs_copy.reshape(2, 9)
+    # Reshape real-time processing feature from all groups to 6 rows, 3 columns
+    rt_processing_feature_all_techs_reshaped = rt_processing_feature_all_techs.reshape(-1, 3)
+    rt_processing_feature_all_techs_copy_reshaped = rt_processing_feature_all_techs_copy.reshape(-1, 3)
 
-    # print(f"{reshaped_sorted_feature_weights.base}\n{reshaped_performance_features.base}\n{reshaped_core_feature_scores.base}\n{reshaped_group_1_automation.base}\n{reshaped_efficiency_feature_all_techs.base}\n")
-    # print(f"{reshaped_sorted_feature_weights.shape}\n{reshaped_performance_features.shape}\n{reshaped_core_feature_scores.shape}\n{reshaped_group_1_automation.shape}\n{reshaped_efficiency_feature_all_techs.shape}\n")
+    # print(f"{performance_features_reshaped.base}\n{performance_features_copy_reshaped.base}\n{automation_features_reshaped.base}\n{automation_features_copy_reshaped.base}\n{groups_quality_features_reshaped.base}\n{groups_quality_features_copy_reshaped.base}\n{efficiency_feature_all_techs_reshaped.base}\n{efficiency_feature_all_techs_copy_reshaped.base}\n{rt_processing_feature_all_techs_reshaped.base}\n{rt_processing_feature_all_techs_copy_reshaped.base}")
+    # print(f"{performance_features_reshaped.shape}\n{performance_features_copy_reshaped.shape}\n{automation_features_reshaped.shape}\n{automation_features_copy_reshaped.shape}\n{groups_quality_features_reshaped.shape}\n{groups_quality_features_copy_reshaped.shape}\n{efficiency_feature_all_techs_reshaped.shape}\n{efficiency_feature_all_techs_copy_reshaped.shape}\n{rt_processing_feature_all_techs_reshaped.shape}\n{rt_processing_feature_all_techs_copy_reshaped.shape}")
 
-    return reshaped_sorted_feature_weights, reshaped_performance_features, reshaped_core_feature_scores, reshaped_group_1_automation, reshaped_efficiency_feature_all_techs
+    return performance_features_reshaped, performance_features_copy_reshaped, automation_features_reshaped, automation_features_copy_reshaped, interpretability_features_reshaped, interpretability_features_copy_reshaped, efficiency_feature_all_techs_reshaped, efficiency_feature_all_techs_copy_reshaped, rt_processing_feature_all_techs_reshaped, rt_processing_feature_all_techs_copy_reshaped
 
-def join():
-    pass
+def join(performance_features_reshaped, performance_features_copy_reshaped, automation_features_reshaped, automation_features_copy_reshaped, interpretability_features_reshaped, interpretability_features_copy_reshaped, efficiency_feature_all_techs_reshaped, efficiency_feature_all_techs_copy_reshaped, rt_processing_feature_all_techs_reshaped, rt_processing_feature_all_techs_copy_reshaped):
 
-def split(weights_copy, techs_copy, tech_groups_copy, tech_locations_copy):
-    # Split the weights into 3 equal parts
-    weight_batches = np.array_split(weights_copy, 3)
+    performance_features_comparison = np.concatenate((performance_features_reshaped, performance_features_copy_reshaped), axis=1)
 
-    # Split the techs into 3 equal parts
-    tech_batches = np.array_split(techs_copy, 3, axis=1)
+    automation_features_comparison = np.stack((automation_features_reshaped, automation_features_copy_reshaped), axis=1)
 
-    # Split the techs in the other 2 groups into 3 equal parts
-    tech_groups_batches = np.array_split(tech_groups_copy[1:], 3, axis=2)
+    interpretability_features_comparison = np.hstack((interpretability_features_reshaped, interpretability_features_copy_reshaped))
 
-    # Split the techs in the other 2 locations into 3 equal parts
-    tech_locations_batches = np.array_split(tech_locations_copy[1:], 3, axis=3)
+    efficiency_feature_all_techs_comparison = np.vstack((efficiency_feature_all_techs_reshaped, efficiency_feature_all_techs_copy_reshaped))
 
-    return weight_batches, tech_batches, tech_groups_batches, tech_locations_batches
+    rt_processing_feature_all_techs_comparison = np.dstack((rt_processing_feature_all_techs_reshaped, rt_processing_feature_all_techs_copy_reshaped))
 
-def search(tech_locations_copy):
-    # Search for passing tech features in the tech locations
-    passing_features = np.where(tech_locations_copy >= 7)
-    failing_features = np.where(tech_locations_copy < 7)
-    top_techs = tech_locations_copy[np.where(tech_locations_copy > 8)]
+    return performance_features_comparison, automation_features_comparison, interpretability_features_comparison, efficiency_feature_all_techs_comparison, rt_processing_feature_all_techs_comparison
 
-    return passing_features, failing_features, top_techs
+def split(performance_features_comparison, automation_features_comparison, interpretability_features_comparison, efficiency_feature_all_techs_comparison, rt_processing_feature_all_techs_comparison):
+    # Split features into batches for analysis
+    performance_batches = np.array_split(performance_features_comparison, 3)
 
-def sort(tech_locations_copy):
-    # Sort the tech locations
-    sorted_locations = np.sort(tech_locations_copy)
+    # Split features into batches for analysis
+    automation_batches = np.array_split(automation_features_comparison, 3, axis=2)
+
+    # Split features into batches for analysis
+    interpretability_batches = np.hsplit(interpretability_features_comparison, 6)
+
+    # Split features into batches for analysis
+    efficiency_batches = np.split(efficiency_feature_all_techs_comparison, 18, axis=1)
+
+    # Split features into batches for analysis
+    rt_processing_batches = np.vsplit(rt_processing_feature_all_techs_comparison, 6)
+
+    return performance_batches, automation_batches, interpretability_batches, efficiency_batches, rt_processing_batches
+
+def search_sort(performance_batches, automation_batches, interpretability_batches, efficiency_batches, rt_processing_batches):
+    # Search for critical performance values (e.g., greater than 5) and sort the batches  
+    performance_batches = np.concatenate(performance_batches, axis=0)
+    critical_performance_indices = np.where(performance_batches%2 == 1)
+    sorted_performance_batches = np.sort(performance_batches)
+    sorted_performance_flat = np.sort(sorted_performance_batches.flatten())
+    insert_performance_indices = np.searchsorted(sorted_performance_flat, 7)
+
+    automation_batches = np.concatenate(automation_batches, axis=0)
+    critical_automation_indices = np.where(automation_batches%2 == 1)
+    sorted_automation_batches = np.sort(automation_batches)
+    sorted_automation_flat = np.sort(sorted_automation_batches.flatten())
+    insert_automation_indices = np.searchsorted(sorted_automation_flat, 7)
+
+    interpretability_batches = np.concatenate(interpretability_batches, axis=0)
+    critical_interpretability_indices = np.where(interpretability_batches%2 == 1)
+    sorted_interpretability_batches = np.sort(interpretability_batches)
+    sorted_interpretability_flat = np.sort(sorted_interpretability_batches.flatten())
+    insert_interpretability_indices = np.searchsorted(sorted_interpretability_flat, 7)
+
+    efficiency_batches = np.concatenate(efficiency_batches, axis=0)
+    critical_efficiency_indices = np.where(efficiency_batches%2 == 1)
+    sorted_efficiency_batches = np.sort(efficiency_batches)
+    sorted_efficiency_flat = np.sort(sorted_efficiency_batches.flatten())
+    insert_efficiency_indices = np.searchsorted(sorted_efficiency_flat, 7)
+
+    rt_processing_batches = np.concatenate(rt_processing_batches, axis=0)
+    critical_rt_processing_indices = np.where(rt_processing_batches%2 == 1)
+    sorted_rt_processing_batches = np.sort(rt_processing_batches)
+    sorted_rt_processing_flat = np.sort(sorted_rt_processing_batches.flatten())
+    insert_rt_processing_indices = np.searchsorted(sorted_rt_processing_flat, 7)
+
+    return critical_performance_indices, sorted_performance_batches, sorted_performance_flat, insert_performance_indices, critical_automation_indices, sorted_automation_batches, sorted_automation_flat, insert_automation_indices, critical_interpretability_indices, sorted_interpretability_batches, sorted_interpretability_flat, insert_interpretability_indices, critical_efficiency_indices, sorted_efficiency_batches, sorted_efficiency_flat, insert_efficiency_indices, critical_rt_processing_indices, sorted_rt_processing_batches, sorted_rt_processing_flat, insert_rt_processing_indices
+
+def filter(sorted_performance_flat, sorted_automation_flat, sorted_interpretability_flat, sorted_efficiency_flat, sorted_rt_processing_flat):
+    # Filter array that will return only specific values
+    sorted_performance_flat_filters = []
+    for element in sorted_performance_flat:
+        if element >= 5:
+            sorted_performance_flat_filters.append(True)
+        else:
+            sorted_performance_flat_filters.append(False)
+
+    filtered_sorted_performance_flat = sorted_performance_flat[sorted_performance_flat_filters]
+
+    sorted_automation_flat_filters = []
+    for element in sorted_automation_flat:
+        if element >= 3:
+            sorted_automation_flat_filters.append(True)
+        else:
+            sorted_automation_flat_filters.append(False)
     
-    return sorted_locations
+    filtered_sorted_automation_flat = sorted_automation_flat[sorted_automation_flat_filters]
+
+    sorted_interpretability_flat_filters = []
+    for element in sorted_interpretability_flat:
+        if element >= 5:
+            sorted_interpretability_flat_filters.append(True)
+        else:
+            sorted_interpretability_flat_filters.append(False)
+
+    filtered_sorted_interpretability_flat = sorted_interpretability_flat[sorted_interpretability_flat_filters]
+
+    sorted_efficiency_flat_filters = sorted_efficiency_flat >= 6
+    filtered_sorted_efficiency_flat = sorted_efficiency_flat[sorted_efficiency_flat_filters]
+
+    sorted_rt_processing_flat_filters = sorted_rt_processing_flat >= 5
+    filtered_sorted_rt_processing_flat = sorted_rt_processing_flat[sorted_rt_processing_flat_filters]
+
+    return sorted_performance_flat_filters, filtered_sorted_performance_flat, sorted_automation_flat_filters, filtered_sorted_automation_flat, sorted_interpretability_flat_filters, filtered_sorted_interpretability_flat, sorted_efficiency_flat_filters, filtered_sorted_efficiency_flat, sorted_rt_processing_flat_filters, filtered_sorted_rt_processing_flat

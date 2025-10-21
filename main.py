@@ -1,5 +1,5 @@
 from data_generator import generate_data
-from data_analyzer import slice_1D, slice_2D, slice_3D, slice_4D, copy_view, reshape_array, join, split, search, sort
+from data_analyzer import slice_1D, slice_2D, slice_3D, slice_4D, copy_view, reshape_array, join, split, search_sort, filter
 import numpy as np
 
 def main():
@@ -36,7 +36,7 @@ def main():
     print("\n")
 
     # Slice 2D data
-    scalability, automation, real_time_processing, interpretability, efficiency, combined_score, performance_features, tech2, scalability2, automation2, real_time_processing2, interpretability2, efficiency2, combined_score2, tech3, scalability3, automation3, real_time_processing3, interpretability3, efficiency3, combined_score3, core_features_scores, legacy, modern, nextgen = slice_2D(tech, techs, tech_group_labels)
+    scalability, automation, real_time_processing, interpretability, efficiency, combined_score, performance_features, tech2, scalability2, automation2, real_time_processing2, interpretability2, efficiency2, combined_score2, tech3, scalability3, automation3, real_time_processing3, interpretability3, efficiency3, combined_score3, automation_features, legacy, modern, nextgen = slice_2D(tech, techs, tech_group_labels)
 
     # Print 2D data
     print(f"Tech 1 Features: {tech}")
@@ -78,9 +78,7 @@ def main():
         for y in x:
             print(y)
     print("\n")
-    #print("Efficiency Scores:", efficiency_scores)
-    #print("Scalability Scores:", scalability_scores)
-    print(f"Core Features Scores:\n {core_features_scores}")
+    print(f"Automation Features:\n {automation_features}")
     print("\n")
 
     print(f"Tech Group Labels\nLegacy: {legacy}, Modern: {modern}, NextGen: {nextgen}")
@@ -97,7 +95,7 @@ def main():
     print("\n")
 
     # Slice 3D data
-    tech_group2, tech2_1, scalability2_1, automation2_1, real_time_processing2_1, interpretability2_1, efficiency2_1, combined_score2_1, tech2_2, scalability2_2, automation2_2, real_time_processing2_2, interpretability2_2, efficiency2_2, combined_score2_2, tech2_3, scalability2_3, automation2_3, real_time_processing2_3, interpretability2_3, efficiency2_3, combined_score2_3, tech_group3, tech3_1, scalability3_1, automation3_1, real_time_processing3_1, interpretability3_1, efficiency3_1, combined_score3_1, tech3_2, scalability3_2, automation3_2, real_time_processing3_2, interpretability3_2, efficiency3_2, combined_score3_2, tech3_3, scalability3_3, automation3_3, real_time_processing3_3, interpretability3_3, efficiency3_3, combined_score3_3, group_1_automation, cloud, edge, on_premises = slice_3D(tech_groups, tech_locations_labels)
+    tech_group2, tech2_1, scalability2_1, automation2_1, real_time_processing2_1, interpretability2_1, efficiency2_1, combined_score2_1, tech2_2, scalability2_2, automation2_2, real_time_processing2_2, interpretability2_2, efficiency2_2, combined_score2_2, tech2_3, scalability2_3, automation2_3, real_time_processing2_3, interpretability2_3, efficiency2_3, combined_score2_3, tech_group3, tech3_1, scalability3_1, automation3_1, real_time_processing3_1, interpretability3_1, efficiency3_1, combined_score3_1, tech3_2, scalability3_2, automation3_2, real_time_processing3_2, interpretability3_2, efficiency3_2, combined_score3_2, tech3_3, scalability3_3, automation3_3, real_time_processing3_3, interpretability3_3, efficiency3_3, combined_score3_3, interpretability_features, cloud, edge, on_premises = slice_3D(tech_groups, tech_locations_labels)
 
     # Print 3D data
     print(f"Tech Group 2 Features:\n {tech_group2}")
@@ -150,8 +148,7 @@ def main():
     print("Efficiency:", efficiency3_3)
     print("Combined Score:", combined_score3_3)
     print("\n")
-    print(f"Group 1 Tech Automation scores:\n {group_1_automation}")
-    #print(f"Group's Scalability Features of each tech:\n {groups_scalability}")
+    print(f"Interpretability Features per Tech Group:\n {interpretability_features}")
     print("\n")
 
     print("Iterating over tech groups:")
@@ -200,7 +197,7 @@ def main():
 
     
     # Slice 4D data
-    tech_location2, tech_location2_g1, tech_location2_g1_1, scalability2_g1_1, automation2_g1_1, real_time_processing2_g1_1, interpretability2_g1_1, efficiency2_g1_1, combined_score2_g1_1, tech_location2_g1_2, scalability2_g1_2, automation2_g1_2, real_time_processing2_g1_2, interpretability2_g1_2, efficiency2_g1_2, combined_score2_g1_2, tech_location2_g1_3, scalability2_g1_3, automation2_g1_3, real_time_processing2_g1_3, interpretability2_g1_3, efficiency2_g1_3, combined_score2_g1_3, tech_location2_g2, tech_location2_g2_1, scalability2_g2_1, automation2_g2_1, real_time_processing2_g2_1, interpretability2_g2_1, efficiency2_g2_1, combined_score2_g2_1, tech_location2_g2_2, scalability2_g2_2, automation2_g2_2, real_time_processing2_g2_2, interpretability2_g2_2, efficiency2_g2_2, combined_score2_g2_2, tech_location2_g2_3, scalability2_g2_3, automation2_g2_3, real_time_processing2_g2_3, interpretability2_g2_3, efficiency2_g2_3, combined_score2_g2_3, tech_location2_g3, tech_location2_g3_1, scalability2_g3_1, automation2_g3_1, real_time_processing2_g3_1, interpretability2_g3_1, efficiency2_g3_1, combined_score2_g3_1, tech_location2_g3_2, scalability2_g3_2, automation2_g3_2, real_time_processing2_g3_2, interpretability2_g3_2, efficiency2_g3_2, combined_score2_g3_2, tech_location2_g3_3, scalability2_g3_3, automation2_g3_3, real_time_processing2_g3_3, interpretability2_g3_3, efficiency2_g3_3, combined_score2_g3_3, efficiency_feature_all_techs = slice_4D(tech_locations)
+    tech_location2, tech_location2_g1, tech_location2_g1_1, scalability2_g1_1, automation2_g1_1, real_time_processing2_g1_1, interpretability2_g1_1, efficiency2_g1_1, combined_score2_g1_1, tech_location2_g1_2, scalability2_g1_2, automation2_g1_2, real_time_processing2_g1_2, interpretability2_g1_2, efficiency2_g1_2, combined_score2_g1_2, tech_location2_g1_3, scalability2_g1_3, automation2_g1_3, real_time_processing2_g1_3, interpretability2_g1_3, efficiency2_g1_3, combined_score2_g1_3, tech_location2_g2, tech_location2_g2_1, scalability2_g2_1, automation2_g2_1, real_time_processing2_g2_1, interpretability2_g2_1, efficiency2_g2_1, combined_score2_g2_1, tech_location2_g2_2, scalability2_g2_2, automation2_g2_2, real_time_processing2_g2_2, interpretability2_g2_2, efficiency2_g2_2, combined_score2_g2_2, tech_location2_g2_3, scalability2_g2_3, automation2_g2_3, real_time_processing2_g2_3, interpretability2_g2_3, efficiency2_g2_3, combined_score2_g2_3, tech_location2_g3, tech_location2_g3_1, scalability2_g3_1, automation2_g3_1, real_time_processing2_g3_1, interpretability2_g3_1, efficiency2_g3_1, combined_score2_g3_1, tech_location2_g3_2, scalability2_g3_2, automation2_g3_2, real_time_processing2_g3_2, interpretability2_g3_2, efficiency2_g3_2, combined_score2_g3_2, tech_location2_g3_3, scalability2_g3_3, automation2_g3_3, real_time_processing2_g3_3, interpretability2_g3_3, efficiency2_g3_3, combined_score2_g3_3, efficiency_feature_all_techs, rt_processing_feature_all_techs = slice_4D(tech_locations)
 
     # Print 4D data
     print(f"Tech Location 2 Features:\n {tech_location2}")
@@ -279,10 +276,7 @@ def main():
     print("Efficiency:", efficiency2_g3_3)
     print("Combined Score:", combined_score2_g3_3)
     print("\n")
-    #print(f"Location 2 Group 3 Tech 1 Features:", location2_group3_tech1_features)
-    #print("Group 2 Scalability by Location:", group2_scalability_by_location)
-    print(f"Efficiency feature from all techs, groups, locations:\n {efficiency_feature_all_techs}")
-    #print(f"Real-time Processing feature from all techs, groups, locations:\n {realtime_scores_loc1}")
+    print(f"Efficiency feature from all locations, groups, techs:\n {efficiency_feature_all_techs}")
     print("\n")
 
     print("Iterating over all values in Tech Locations as string types:")
@@ -290,109 +284,197 @@ def main():
         print(x)
     print("\n")
 
+    print(f"Real-Time Processing feature from all locations, groups, techs:\n {rt_processing_feature_all_techs}")
+    print("\n")
+
     # Copy data
-    bias_copy, bias_copy_view, sorted_feature_weights_copy, sorted_feature_weights_copy_view, performance_features_copy, performance_features_copy_view, core_feature_scores_copy, core_feature_scores_copy_view, group_1_automation_copy, group_1_automation_copy_view, efficiency_feature_all_techs_copy, efficiency_feature_all_techs_copy_view = copy_view(bias, sorted_feature_weights, performance_features, core_features_scores, group_1_automation, efficiency_feature_all_techs)
+    bias_copy, bias_view, performance_features_copy, performance_features_view, automation_features_copy, automation_features_view, interpretability_features_copy, interpretability_features_view, efficiency_feature_all_techs_copy, efficiency_feature_all_techs_view, rt_processing_feature_all_techs_copy, rt_processing_feature_all_techs_view = copy_view(bias, performance_features, automation_features, interpretability_features, efficiency_feature_all_techs, rt_processing_feature_all_techs)
 
     # Print copied modified data
     print("Modified and Copied Data:")
-    print("Modified Bias:", bias)
     print("Bias Copy:", bias_copy)
-    print("Bias Copy View:", bias_copy_view)
+    print("Bias View:", bias_view)
     print("\n")
 
-    print("Modified Sorted Feature Weights:", sorted_feature_weights)
-    print("Sorted Feature Weights Copy:", sorted_feature_weights_copy)
-    print("Sorted Feature Weights Copy View:", sorted_feature_weights_copy_view)
+    print("Performance Features Copy:", performance_features_copy)
+    print("Performance Features View:", performance_features_view)
     print("\n")
 
-    print("Modified Last 3 Features:", performance_features)
-    print("Last 3 Features Copy:", performance_features_copy)
-    print("Last 3 Features Copy View:", performance_features_copy_view)
+    print("Quality Features Copy:", automation_features_copy)
+    print("Quality Features View:", automation_features_view)
     print("\n")
 
-    print("Modified Core Features Scores:", core_features_scores)
-    print("Core Features Scores Copy:", core_feature_scores_copy)
-    print("Core Features Scores Copy View:", core_feature_scores_copy_view)
-    print("\n")
-
-    print("Iterating through Core Techs Copy with step size 2 (columns):")
-    for x in np.nditer(core_feature_scores_copy[:, ::2]):
+    print("Iterating through interpretability Features Copy with step size 2 (columns):")
+    for x in np.nditer(interpretability_features_copy[:, ::2]):
         print(x)
     print("\n")
 
-    print("Modified group 1's Automation Features:", group_1_automation)
-    print("group 1's Automation Features Copy:", group_1_automation_copy)
-    print("group 1's Automation Features Copy View:", group_1_automation_copy_view)
+    print("Interpretability Features per tech group Copy:", interpretability_features_copy)
+    print("Interpretability Features per tech group view:", interpretability_features_view)
     print("\n")
 
-    print("Modified Efficiency feature from all techs, groups, locations:", efficiency_feature_all_techs)
-    print("Efficiency feature from all techs, groups, locations Copy:", efficiency_feature_all_techs_copy)
-    print("Efficiency feature from all techs, groups, locations Copy View:", efficiency_feature_all_techs_copy_view)
+    print("Efficiency features from 3 groups Copy:", efficiency_feature_all_techs_copy)
+    print("Efficiency features from 3 groups View:", efficiency_feature_all_techs_view)
     print("\n")
 
-    reshaped_sorted_feature_weights, reshaped_performance_features, reshaped_core_feature_scores, reshaped_group_1_automation, reshaped_efficiency_feature_all_techs = reshape_array(sorted_feature_weights_copy, performance_features_copy, core_feature_scores_copy, group_1_automation_copy, efficiency_feature_all_techs_copy)
+    print("Real-Time Processing feature from all locations, groups, techs Copy:", rt_processing_feature_all_techs_copy)
+    print("Real-Time Processing feature from all locations, groups, techs View:", rt_processing_feature_all_techs_view)
+    print("\n")
+
+    performance_features_reshaped, performance_features_copy_reshaped, automation_features_reshaped, automation_features_copy_reshaped, interpretability_features_reshaped, interpretability_features_copy_reshaped, efficiency_feature_all_techs_reshaped, efficiency_feature_all_techs_copy_reshaped, rt_processing_feature_all_techs_reshaped, rt_processing_feature_all_techs_copy_reshaped = reshape_array(performance_features, performance_features_copy, automation_features, automation_features_copy, interpretability_features, interpretability_features_copy, efficiency_feature_all_techs, efficiency_feature_all_techs_copy, rt_processing_feature_all_techs, rt_processing_feature_all_techs_copy)
 
     # Print reshaped data
     print("Reshaped Data:")
-    print("Reshaped Sorted Feature Weights:", reshaped_sorted_feature_weights)
-
-    print("\nIndex and value pairs from reshaped feature importance:")
-    for idx, x in np.ndenumerate(reshaped_sorted_feature_weights):
-        print(f"Index: {idx}, Value: {x}")
-
-    print("\nReshaped scalability, real-time processing, efficiency features of one tech", reshaped_performance_features)
+    print("Reshaped Performance features of one tech:", performance_features_reshaped)
+    print("Reshaped Performance features Copy:", performance_features_copy_reshaped)
 
     print("\nIndex and value pairs from features:")
-    for idx, x in np.ndenumerate(reshaped_performance_features):
+    for idx, x in np.ndenumerate(performance_features_reshaped):
         print(f"Index: {idx}, Value: {x}")
 
     print('\n')
-    print("Reshaped automation and interpretability scores:", reshaped_core_feature_scores)
-    print("Reshaped Group 1's Automation:", reshaped_group_1_automation)
-    print("Reshaped Efficiency Feature from All Techs:", reshaped_efficiency_feature_all_techs)
+    print("Reshaped Automation features of three techs:", automation_features_reshaped)
+    print("Reshaped Automation features copy:", automation_features_copy_reshaped)
+    print("\n")
+
+    print("Reshaped Interpretability features per tech group:", interpretability_features_reshaped)
+    print("Reshaped Interpretability features per tech group copy:", interpretability_features_copy_reshaped)
+    print("\n")
+
+    print("Reshaped Efficiency feature from all techs, groups, locations:", efficiency_feature_all_techs_reshaped)
+    print("Reshaped Efficiency feature from all techs, groups, locations Copy:", efficiency_feature_all_techs_copy_reshaped)
+    print("\n")
+
+    print("Reshaped Real-Time Processing feature from all locations:", rt_processing_feature_all_techs_reshaped)
+    print("Reshaped Real-Time Processing feature from all locations Copy:", rt_processing_feature_all_techs_copy_reshaped)
     print("\n")
 
     # Join data
+    performance_features_comparison, automation_features_comparison, interpretability_features_comparison, efficiency_feature_all_techs_comparison, rt_processing_feature_all_techs_comparison = join(performance_features_reshaped, performance_features_copy_reshaped, automation_features_reshaped, automation_features_copy_reshaped, interpretability_features_reshaped, interpretability_features_copy_reshaped, efficiency_feature_all_techs_reshaped, efficiency_feature_all_techs_copy_reshaped, rt_processing_feature_all_techs_reshaped, rt_processing_feature_all_techs_copy_reshaped)
 
-'''
+    print("Joined Data:")
+    print("Joined Performance Features Comparison:")
+    print(performance_features_comparison)
+    print("\n")
+
+    print("Joined Automation Features Comparison:")
+    print(automation_features_comparison)
+    print("\n")
+
+    print("Joined Interpretability Features per Tech Group Comparison:")
+    print(interpretability_features_comparison)
+    print("\n")
+
+    print("Joined Efficiency Feature from all techs, groups, locations Comparison:")
+    print(efficiency_feature_all_techs_comparison)
+    print("\n")
+
+    print("Joined Real-Time Processing Feature from all locations, groups, techs Comparison:")
+    print(rt_processing_feature_all_techs_comparison)
+    print("\n")
+
     # Split data
-    print("\nSplitting Data for Feature Analysis:")
-    weight_batches, tech_batches, tech_groups_batches, tech_locations_batches = split(weights_copy, techs_copy, tech_groups_copy, tech_locations_copy)
-    # Print split weights
-    print("Split Data for Feature Analysis:")
-    print("Scaling & Speed weight batch:", weight_batches[0])
-    print("Process Automation weight batch:", weight_batches[1])
-    print("Explainability weight batch:", weight_batches[2])
-    print("\n")
-    print("Scaling & Speed batch:", tech_batches[0])
-    print("Process Automation batch:", tech_batches[1])
-    print("Explainability batch:", tech_batches[2])
-    print("\n")
-    print("Scaling & Speed batch from Tech Groups:", tech_groups_batches[0])
-    print("Process Automation batch from Tech Groups:", tech_groups_batches[1])
-    print("Explainability batch fromTech Groups:", tech_groups_batches[2])
-    print("\n")
-    print("Scaling & Speed batch from Tech Locations:", tech_locations_batches[0])
-    print("Process Automation batch from Tech Locations:", tech_locations_batches[1])
-    print("Explainability batch from Tech Locations:", tech_locations_batches[2])
+    print("\nSplitting Data:")
+    performance_batches, automation_batches, interpretability_batches, efficiency_batches, rt_processing_batches = split(performance_features_comparison, automation_features_comparison, interpretability_features_comparison, efficiency_feature_all_techs_comparison, rt_processing_feature_all_techs_comparison)
 
-    # Search data
-    passing_features, failing_features, top_techs = search(tech_locations_copy)
+    print(f"Split performance batches: {performance_batches}\n")
+    for i, batch in enumerate(performance_batches):
+        print(f"Batch {i+1}: {batch}")
+    print('\n')
+    print(f"Split automation batches: {automation_batches}\n")
+    for i, batch in enumerate(automation_batches):
+        print(f"Batch {i+1}: {batch}")
+    print('\n')
+    print(f"Split interpretability batches: {interpretability_batches}\n")
+    for i, batch in enumerate(interpretability_batches):
+        print(f"Batch {i+1}: {batch}")
+    print('\n')
+    print(f"Split efficiency batches: {efficiency_batches}\n")
+    for i, batch in enumerate(efficiency_batches):
+        print(f"Batch {i+1}: {batch}")
+    print('\n')
+    print(f"Split real-time processing batches: {rt_processing_batches}\n")
+    for i, batch in enumerate(rt_processing_batches):
+        print(f"Batch {i+1}: {batch}")
+    print('\n')
 
-    # Print search results
-    print("\nPassing Features in Tech Locations:")
-    print("Indices of Passing Features:", passing_features)
-    print("Passing features:", tech_locations[passing_features])
-    print("\nFailing Features in Tech Locations:")
-    print("Indices of Failing Features:", failing_features)
-    print("Failing features:", tech_locations[failing_features])
+    # Search and Sort data
+    critical_performance_indices, sorted_performance_batches, sorted_performance_flat, insert_performance_indices, critical_automation_indices, sorted_automation_batches, sorted_automation_flat, insert_automation_indices, critical_interpretability_indices, sorted_interpretability_batches, sorted_interpretability_flat, insert_interpretability_indices, critical_efficiency_indices, sorted_efficiency_batches, sorted_efficiency_flat, insert_efficiency_indices, critical_rt_processing_indices, sorted_rt_processing_batches, sorted_rt_processing_flat, insert_rt_processing_indices = search_sort(performance_batches, automation_batches, interpretability_batches, efficiency_batches, rt_processing_batches)
+
+    print("Search and Sort Results:")
+    print("Critical Performance Indices (odd):")
+    print(critical_performance_indices)
+    print("Sorted Performance Batches:")
+    print(sorted_performance_batches)
+    print("Sorted Performance Flat:")
+    print(sorted_performance_flat)
+    print("Insert Performance Indices for value 7:")
+    print(insert_performance_indices)
     print("\n")
-    print("Top Techs in all Locations:", top_techs)
+    print("Critical Automation Indices (odd):")
+    print(critical_automation_indices)
+    print("Sorted Automation Batches:")
+    print(sorted_automation_batches)
+    print("Sorted Automation Flat:")
+    print(sorted_automation_flat)
+    print("Insert Automation Indices for value 7:")
+    print(insert_automation_indices)
+    print("\n")
+    print("Critical Interpretability Indices (odd):")
+    print(critical_interpretability_indices)
+    print("Sorted Interpretability Batches:")
+    print(sorted_interpretability_batches)
+    print("Sorted Interpretability Flat:")
+    print(sorted_interpretability_flat)
+    print("Insert Interpretability Indices for value 7:")
+    print(insert_interpretability_indices)
+    print("\n")
+    print("Critical Efficiency Indices (odd):")
+    print(critical_efficiency_indices)
+    print("Sorted Efficiency Batches:")
+    print(sorted_efficiency_batches)
+    print("Sorted Efficiency Flat:")
+    print(sorted_efficiency_flat)
+    print("Insert Efficiency Indices for value 7:")
+    print(insert_efficiency_indices)
+    print("\n")
+    print("Critical Real-Time Processing Indices (odd):")
+    print(critical_rt_processing_indices)
+    print("Sorted Real-Time Processing Batches:")
+    print(sorted_rt_processing_batches)
+    print("Sorted Real-Time Processing Flat:")
+    print(sorted_rt_processing_flat)
+    print("Insert Real-Time Processing Indices for value 7:")
+    print(insert_rt_processing_indices)
     print("\n")
 
-    # Sort data
-    sorted_locations = sort(tech_locations_copy)
-    print("Sorted Tech Locations:")
-    print(sorted_locations)
-'''
+    sorted_performance_flat_filters, filtered_sorted_performance_flat, sorted_automation_flat_filters, filtered_sorted_automation_flat, sorted_interpretability_flat_filters, filtered_sorted_interpretability_flat, sorted_efficiency_flat_filters, filtered_sorted_efficiency_flat, sorted_rt_processing_flat_filters, filtered_sorted_rt_processing_flat = filter(sorted_performance_flat, sorted_automation_flat, sorted_interpretability_flat, sorted_efficiency_flat, sorted_rt_processing_flat)
+
+    print("Filter Results:")
+    print("Sorted Performance Flat Filters:")
+    print(sorted_performance_flat_filters)
+    print("Filtered Sorted Performance Flat after applying filter:")
+    print(filtered_sorted_performance_flat)
+    print("\n")
+    print("Sorted Automation Flat Filters:")
+    print(sorted_automation_flat_filters)
+    print("Filtered Sorted Automation Flat after applying filter:")
+    print(filtered_sorted_automation_flat)
+    print("\n")
+    print("Sorted Interpretability Flat Filters:")
+    print(sorted_interpretability_flat_filters)
+    print("Filtered Sorted Interpretability Flat after applying filter:")
+    print(filtered_sorted_interpretability_flat)
+    print("\n")
+    print("Sorted Efficiency Flat Filters:")
+    print(sorted_efficiency_flat_filters)
+    print("Filtered Sorted Efficiency Flat after applying filter:")
+    print(filtered_sorted_efficiency_flat)
+    print("\n")
+    print("Sorted Real-Time Processing Flat Filters:")
+    print(sorted_rt_processing_flat_filters)
+    print("Filtered Sorted Real-Time Processing Flat after applying filter:")
+    print(filtered_sorted_rt_processing_flat)
+    print("\n")
+
 main()
