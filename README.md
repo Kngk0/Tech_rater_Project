@@ -36,7 +36,7 @@ The central orchestration script that:
 - Reversible slicing and selective feature extraction
 - Ready to extend for AI benchmarking, technology scoring, or visualization pipelines
 
---
+---
 
 ## 📦 Installation
 
