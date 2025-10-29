@@ -1,9 +1,56 @@
+"""
+Purpose:
+--------
+This project demonstrates a complete, modular NumPy-based data pipeline for analyzing
+and manipulating multidimensional technology evaluation data.
+
+It simulates a hierarchical dataset representing:
+- Individual technologies
+- Groups of related technologies
+- Deployment locations (e.g., Cloud, Edge, On-Premises)
+
+The system processes data across **five dimensions**:
+0D → Bias  
+1D → Feature weights and labels  
+2D → Technologies (rows) × Features (columns)  
+3D → Groups × Technologies × Features  
+4D → Locations × Groups × Technologies × Features  
+
+Each dimension is sliced, reshaped, copied, joined, split, sorted, and filtered
+to demonstrate NumPy’s multidimensional array manipulation capabilities.
+
+End Result:
+------------
+A fully functional demonstration of **structured multidimensional data flow** —
+from raw generation to advanced transformation — for performance analysis,
+feature evaluation, and environment-based comparison.
+
+The project can serve as a foundation for AI model evaluation, tech performance
+benchmarking, or hierarchical simulation systems in research or business settings.
+"""
 from data_generator import generate_data
 from data_analyzer import slice_1D, slice_2D, slice_3D, slice_4D, copy_view, reshape_array, join, split, search_sort, filter
 import numpy as np
 
 def main():
+    '''
+    This function:
+    1. Generates hierarchical test data using NumPy arrays.
+    2. Applies slicing operations (1D–4D) to extract structured features.
+    3. Creates modified copies and reshaped versions of the arrays.
+    4. Joins, splits, sorts, and filters the data for analysis.
+    '''
+    
     # Load data
+    # 0D scalar bias indicator
+    # 1D labels for techs (Basic → Advanced)
+    # 2D array of single tech features
+    # 1D importance weights for features
+    # 2D array: multiple techs × features
+    # 2D labels for tech groups (Legacy → NextGen)
+    # 3D array: groups × techs × features
+    # 4D array: locations × groups × techs × features
+    # 3D labels for tech locations (Cloud → On-Premises)
     bias, techs_labels, tech, weights, techs, tech_group_labels, tech_groups, tech_locations, tech_locations_labels= generate_data()
 
     # Slice 1D data

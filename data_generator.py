@@ -1,7 +1,17 @@
 import numpy as np
 
 def generate_data():
+    """
+    Generates hierarchical NumPy arrays representing technologies,
+    groups, and locations with labeled feature sets.
 
+    Returns
+    -------
+    tuple of np.ndarray:
+        bias, techs_labels, tech, weights, techs,
+        tech_group_labels, tech_groups,
+        tech_locations, tech_locations_labels
+    """
     # 0D Array: Bias for the tech
     bias = np.array(1, dtype='i4') # 1: Positive, 0: Neutral, -1: Negative
 
@@ -97,13 +107,13 @@ def generate_data():
         ]
     ], dtype='u4') # [scalability, automation, real-time processing, interpretability, efficiency]
 
-    # print(bias, tech, weights, techs, techs_labels, tech_groups, tech_group_labels, tech_locations, tech_locations_labels)
-    # print(type(bias), type(tech), type(weights), type(techs), type(techs_labels), type(tech_groups), type(tech_group_labels), type(tech_locations), type(tech_locations_labels))
-    # print(bias.ndim, tech.ndim, weights.ndim, techs.ndim, techs_labels.ndim, tech_groups.ndim, tech_group_labels.ndim, tech_locations.ndim, tech_locations_labels.ndim)
-    # print(f"{bias.dtype}\n{techs_labels.dtype}\n{tech.dtype}\n{weights.dtype}\n{techs.dtype}\n{tech_group_labels.dtype}\n{tech_groups.dtype}\n{tech_locations_labels.dtype}\n{tech_locations.dtype}")
-    # print(f"{bias.shape}\n{techs_labels.shape}\n{tech.shape}\n{weights.shape}\n{techs.shape}\n{tech_group_labels.shape}\n{tech_groups.shape}\n{tech_locations_labels.shape}\n{tech_locations.shape}")
+    # Print data types and shapes
+    print(type(bias), type(tech), type(weights), type(techs), type(techs_labels), type(tech_groups), type(tech_group_labels), type(tech_locations), type(tech_locations_labels))
+    print(bias.ndim, tech.ndim, weights.ndim, techs.ndim, techs_labels.ndim, tech_groups.ndim, tech_group_labels.ndim, tech_locations.ndim, tech_locations_labels.ndim)
+    print(f"{bias.dtype}\n{techs_labels.dtype}\n{tech.dtype}\n{weights.dtype}\n{techs.dtype}\n{tech_group_labels.dtype}\n{tech_groups.dtype}\n{tech_locations_labels.dtype}\n{tech_locations.dtype}")
+    print(f"{bias.shape}\n{techs_labels.shape}\n{tech.shape}\n{weights.shape}\n{techs.shape}\n{tech_group_labels.shape}\n{tech_groups.shape}\n{tech_locations_labels.shape}\n{tech_locations.shape}")
 
-    return (bias, techs_labels, tech, weights, techs, tech_group_labels, tech_groups, tech_locations, tech_locations_labels)
+    return bias, techs_labels, tech, weights, techs, tech_group_labels, tech_groups, tech_locations, tech_locations_labels
 
 
 generate_data()
