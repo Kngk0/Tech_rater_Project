@@ -1,7 +1,7 @@
 # Technology Evaluation Data Analyzer
 
 This project is a modular Python system for generating, slicing, and analyzing multidimensional technology evaluation data.  
-It helps visualize and compare different technologies, features, and performance metrics across 1D–4D data structures.
+It helps **visualize and compare technologies** across different dimensions (1D–4D), revealing how features like scalability, automation, and efficiency vary across techs, groups, and environments.
 
 ---
 
@@ -10,39 +10,38 @@ It helps visualize and compare different technologies, features, and performance
 The system is composed of three main modules:
 
 ### 1. `data_generator.py`
-Generates labeled NumPy arrays representing:
+Generates structured NumPy arrays representing:
 - **Technology groups** (e.g., AI systems, hardware, energy solutions)
 - **Feature weights and scores**
 - **Multidimensional data** (0D to 4D arrays) that encode attributes, performance metrics, and evaluation results
  
 ### 2. `data_analyzer.py`
-Provides analysis and slicing utilities for the generated data. 
-It can:
-- Extract detailed feature-level data across multiple dimensions
-- Reverse or filter slices for deeper insight
-- Combine evaluation scores (e.g., interpretability, scalability, efficiency)
+Provides slicing and analytical tools to: 
+- Extract feature-level data from any dimension (1D–4D)
+- Reverse, filter, or reshape slices
+- Combine evaluation metrics for in-depth insight
 
 ### 3. `main.py`
-The central orchestration script that:
+The orchestration script that:
 - Calls `generate_data()` from `data_generator.py`
-- Uses the slicing and analysis functions from `data_analyzer.py`
-- Prints structured analysis results for each dimensional slice (1D to 4D)
+- Uses `data_analyzer.py` to analyze and compare technologies
+- Outputs organized summaries for each data dimension
 
 ## ⚙️ Features
 
-- Modular architecture with clear separation of data generation and analysis
-- Handles **1D, 2D, 3D, and 4D NumPy arrays**
-- Built-in evaluation metrics such as interpretability, efficiency, and automation
-- Reversible slicing and selective feature extraction
-- Ready to extend for AI benchmarking, technology scoring, or visualization pipelines
+- Modular design (generation, slicing, and evaluation are separate)
+- Supports **0D → 4D NumPy arrays**
+- Analyzes technology performance across **multiple environments**
+- Includes feature weighting for interpretability, scalability, and efficiency
+- Prepares data for AI benchmarking, visualization, and reporting
 
 ---
 
 ## 📦 Installation
 
-Make sure you have **Python 3.9+** and **NumPy** installed.
+Requires **Python 3.9+** and **NumPy**:
 
 ```bash
-git clone https://github.com/YourUsername/Tech_rater_Project.git
+git clone https://github.com/kngk0/Tech_rater_Project.git
 cd Tech_rater_Project
 pip install -r requirements.txt
