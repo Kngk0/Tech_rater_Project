@@ -1,47 +1,76 @@
 # Technology Evaluation Data Analyzer
 
-This project is a modular Python system for generating, slicing, and analyzing multidimensional technology evaluation data.  
-It helps **visualize and compare technologies** across different dimensions (1D–4D), revealing how features like scalability, automation, and efficiency vary across techs, groups, and environments.
+Python-based framework for evaluating technology data across multiple dimensions
+Demonstrates Python scripting, NumPy array manipulation, data processing, and modular project design for scalable analysis.
 
 ---
 
-## 🧠 Overview
+## 🧑‍💻 Tech Used
 
-The system is composed of three main modules:
+- Python (syntax, loops, functions, file handling)
+- NumPy (arrays, indexing, slicing, reshaping, copying, joining, splitting, sorting, filtering)
+- Modular Python scripts for structured, reusable code
 
-### 1. `data_generator.py`
-Generates structured NumPy arrays representing:
-- **Technology groups** (e.g., AI systems, hardware, energy solutions)
-- **Feature weights and scores**
-- **Multidimensional data** (0D to 4D arrays) that encode attributes, performance metrics, and evaluation results
- 
-### 2. `data_analyzer.py`
-Provides slicing and analytical tools to: 
-- Extract feature-level data from any dimension (1D–4D)
-- Reverse, filter, or reshape slices
-- Combine evaluation metrics for in-depth insight
+## 🧠 Overview / Purpose
 
-### 3. `main.py`
-The orchestration script that:
-- Calls `generate_data()` from `data_generator.py`
-- Uses `data_analyzer.py` to analyze and compare technologies
-- Outputs organized summaries for each data dimension
+This project provides a framework to:
+- Generate multidimensional arrays representing technology metrics
+- Manipulate and analyze arrays to evaluate performance, efficiency, and other key scores
+- Support scalable experimentation with 1D–4D data structures
+- Demonstrate Python data handling, modular design, and algorithmic thinking
 
-## ⚙️ Features
+It’s designed as a prototype for internal evaluation of technology metrics, suitable for automation and larger data analysis pipelines.
 
-- Modular design (generation, slicing, and evaluation are separate)
-- Supports **0D → 4D NumPy arrays**
-- Analyzes technology performance across **multiple environments**
-- Includes feature weighting for interpretability, scalability, and efficiency
-- Prepares data for AI benchmarking, visualization, and reporting
+## ⚙️ Key Features / What It Does
 
----
+- Array Creation: Generate 1D–4D arrays representing technology features
+- Indexing & Slicing: Extract and manipulate specific subsets of data
+- Data Type Handling: Convert between types, check, and define array types
+- Copies & Views: Create copies and views for safe vs efficient data manipulation
+- Shape & Reshape: Inspect array shapes, reshape arrays for analysis
+- Iteration: Traverse arrays efficiently for calculations or checks
+- Joining & Splitting: Combine and divide arrays for multi-metric analysis
+- Sorting & Filtering: Organize and filter data for evaluation
+- Searching: Locate specific values or subsets of data
 
-## 📦 Installation
+This project focuses on building a Pythonic, modular framework for handling multidimensional data rather than on a GUI.
 
-Requires **Python 3.9+** and **NumPy**:
+## 📁 Project Structure
 
-```bash
-git clone https://github.com/kngk0/Tech_rater_Project.git
-cd Tech_rater_Project
-pip install -r requirements.txt
+```
+tech_rater_project/
+├── main.py               # Orchestrates the data generation and analysis
+├── data_generator.py     # Generates 1D–4D arrays with technology metrics
+├── data_analyzer.py      # Performs slicing, data type conversion, copies/views, reshaping, joining, splitting, filtering, and searching
+├── README.md             # Project documentation
+└── requirements.txt
+```
+
+## 📦 How to Run
+
+1. Clone the repository:
+   ```
+   git clone https://github.com/Kngk0/Tech_rater_Project.git
+   cd Tech_rater_Project
+   ```
+2. Install dependencies:
+   ```
+   pip install -r requirements.txt
+   ```
+3. Run the main script:
+   ```
+   python main.py
+   ```
+
+## Key Learnings / What I Implemented
+
+- 	Python scripting for complex data manipulation
+- 	NumPy array operations: indexing, slicing, reshaping, copying, joining, splitting, filtering, sorting
+- 	Modular design: separate generator, analyzer, and main scripts for scalability and reusability
+
+## Future Improvements
+
+- Integrate with real-world datasets
+- Add automated reports / CSV export of analysis
+- Include visualization of multidimensional data (e.g., using Matplotlib)
+- Extend framework to support machine learning input pipelines
